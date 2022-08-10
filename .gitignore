@@ -12,6 +12,7 @@
 *.pdf
 *.fdb_latexmk
 *.fls
+*.xdv
 chapters/*.baklog
 citations/*.tex
 *.pptx
