@@ -75,6 +75,12 @@
 \usepackage[T1]{fontenc}
 
 
+%畫圖套件
+\usepackage{mathrsfs}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+
 %-----
 
 \input{chapters/00_macros}%% 修改中文標題與格式定義
@@ -104,11 +110,14 @@
 \fontsize{12}{21pt}\selectfont
 
 %%  第一章
-\input{chapters/01_introduction}
+%\input{chapters/01_introduction}
 
 
 %%  LVQ
 \input{./chapters/lvq.tex}
+
+%%RBF
+\input{./chapters/rbf.tex}
 
 
 %%  文獻
