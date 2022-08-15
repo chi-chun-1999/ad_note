@@ -98,31 +98,8 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 
 
 \begin{figure}
-	\resizebox{300pt}{400pt}{
-		\begin{tikzpicture}[scale=1]
-			\node[draw, rounded corners,align=center ]                        (start)   {初始化參數 \(\mathbf{W},\alpha\) };
-			\node[draw,diamond, below=20pt of start,align = center]                        (step 2)  {訓練 \(\mathbf{x}\) 中的\\每一筆資料};
-			\node[draw,  aspect=2, below=20pt of step 2]     (step 3)  {找出 \(min\{D(1),D(2),...,D(j),..D(d)\}\) };
-			\node[draw, diamond,below=20pt of step 3]                   (compare)  {比對 \(C_j\)與 \(T\)  };
-			\node[draw, below =30pt of compare,align = center]                         (same)  {\(\mathbf{w_j(new)} = \mathbf{w_j(old)} + \alpha(\mathbf{x} - \mathbf{w_j(old)})\)  };
-			\node[draw, below right=55pt and 80pt of compare]                         (different)  {\(\mathbf{w_j(new)} = \mathbf{w_j(old)} - \alpha(\mathbf{x} - \mathbf{w_j(old)})\)};
-			\node[draw, rounded corners, below=20pt of same]  (learning_rate)     {更新學習率 \(\alpha\) };
-			\node[draw,diamond, below=20pt of learning_rate,align = center]                         (end_detect)  {判斷是否\\達到結束條件};
-			\node[draw, rounded corners, below=20pt of end_detect]  (end)     {End};
-
-			\draw[->] (start)  --coordinate(le) (step 2);
-			\draw[->] (step 2) --node[left]{Yes} (step 3);
-			\draw[->] (step 2.west) --node[above]{Yes}++(-50pt,0)|-(end_detect.west);
-			\draw[->] (step 3) -- (compare);
-			\draw[->] (compare) -> node[left]{Yes}(same.north);
-			\draw[->] (compare.east) --node[above]{No}(compare.east-|different.north) -> (different.north);
-			\draw[->] (same) -- (learning_rate);
-			\draw[->] (learning_rate) -> (end_detect);
-			\draw[->] (end_detect) -- node[left]{Yes}(end);
-			\draw[->] (end_detect.east) --node[above]{No}++(250pt,0pt)|-(le) ;
-
-		\end{tikzpicture}
-	}
+	\centering
+	\input{workflow/lvq_workflow.tex}
 	\caption{演算法流程圖}
 	\label{fig:alogrithm_workflow}
 \end{figure}

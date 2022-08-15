@@ -14,7 +14,7 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_netw
 	\label{fig:rbf_network}
 \end{figure}
 
-\begin{figure}[!t]
+\begin{figure}[H]
 	\begin{center}
 		\begin{tabular}{ccccccccccccc}
 			\subfigure[]{\includegraphics[height=4cm]{./pic/q9iv7T7i.png}\label{fig:percepton_Pa} } \par &
@@ -75,10 +75,10 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_netw
 
 
 	\item
-	      而這個 \(f(x)\)，其實是由3個不同的函數所組成在外加一個常數項所組成的，如圖\ref{fig:lvq_function_assemble}與\ref{eqn:lvq_function}式所示。而其中的 \(h_1(x)\)、\(h_2(x)\)與\(h_3(x)\)就是就是 Radial Basis Function，藉由他們的組成可以將原本的資料集轉換到另一個維度。
+	      而這個 \(f(x)\)，其實是由3個不同的函數所組成在外加一個常數項所組成的，如圖\ref{fig:rbf_function_assemble}與\ref{eqn:rbf_function}式所示。而其中的 \(h_1(x)\)、\(h_2(x)\)與\(h_3(x)\)就是就是 Radial Basis Function，藉由他們的組成可以將原本的資料集轉換到另一個維度。
 
 	      \begin{equation}
-		      \label{eqn:lvq_function}
+		      \label{eqn:rbf_function}
 		      f(x)=w_1h_1(x)+w_2h_2(x)+w_3h_3(x)+b
 	      \end{equation}
 
@@ -86,7 +86,7 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_netw
 		      \centering
 		      \includegraphics[height=6cm]{./pic/vtYD2no6.png}
 		      \caption{\(f(x)\)的組成 }
-		      \label{fig:lvq_function_assemble}
+		      \label{fig:rbf_function_assemble}
 	      \end{figure}
 
 	\item
@@ -121,9 +121,6 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_netw
 
 
 
-
-
-
 %要被單行註解的文字。
 
 
@@ -135,42 +132,59 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_netw
 \subsection{參數定義}
 \begin{itemize}
 	\item
-	      輸入向量，\(\mathbf{x} = (x_1,x_2,x_3,....,x_R)\)，爲資料集中的其中一筆資料，輸入向量的數量 \(R\) 爲資料的特徵數量。
+	      輸入向量，\(\mathbf{x} = (x_1,x_2,x_3,....,x_R)\)，爲資料集中的其中一筆資料，輸入向量的 \(R\) 爲資料的特徵數量。
 	      %
 	\item
 		Radial Basis Layer權重，\(\mathbf{W^1} = [\mathbf{c_1,c_2,...,c_j,...c_{S_1}}]^T\)，爲一個 \(S_1 \times R \)的矩陣，也就是前一節所介紹 Radial Basis Function中心點的集合，這邊的 \(S_1\)代表中心點的數量，而 \(\mathbf{c_j}\)為其中一個中心點 。
 	      %
 	\item
-		Radial Basis Function， 定義為\(\{h_1(.), h_2(.),...,h_j(.),....h_{S_1}(.) \}\)  
+		Radial Basis Function， 定義為\(\{h_1(x), h_2(x),...,h_j(x),....h_{S_1}(x) \}\)  。
+		這邊$h_j(x)=\phi(\mathbf{|c_j-x_i|})$。
+
+
 	\item
-		輸出層權重， \(\mathbf{W^2}= [\mathbf{w_1,w_2,...,w_j,...,w_{S_2}}]^T\)，為一個 \(S_2 \times S_1\) 的矩陣，這邊的 \(S_2\)代表輸出的類別數 。偏移向量為， \(\mathbf{b^2}=(b_1,b_2,....b_{S_2})\)。 
+		輸出層權重， \(\mathbf{W^2}= [\mathbf{w_1,w_2,...,w_k,...,w_{S_2}}]^T\)，為一個 \(S_2 \times S_1\) 的矩陣，這邊的 \(S_2\)代表輸出的類別數 。偏移向量為， \(\mathbf{b^2}=(b_1,b_2,....b_{S_2})\)。 
+	\item
+		輸出向量，\(\mathbf{y}= (y_1,y_2,...,y_k,...y_{S_2})\)，其中式 \ref{eqn:rbf_output_layer}為每個 \(\mathbf{y_k}\)的計算方式。其實仔細觀察可以發現式\ref{eqn:rbf_output_layer}與式\ref{eqn:rbf_function}所代表函意相同。
+
+		\begin{equation}
+			\label{eqn:rbf_output_layer}
+			\mathbf{y_k}= f(x) = \sum_{i=1}^{S_1}w_{ik}\cdot h_i(x)+b_k
+		\end{equation}
 	      %
+		\item
+			實際類別， \(T\)。 
 \end{itemize}
 
-\section {演算法參數定義與流程}
-研究方法與論文架構，研究方法與論文架構，研究方法與論文架構，
-研究方法與論文架構，研究方法與論文架構，研究方法與論文架構，
-研究方法與論文架構，研究方法與論文架構，研究方法與論文架構，
-研究方法與論文架構。
+\subsection{流程}
 
-\begin{itemize}
-	\item
-	      項目一。
-	      %
-	\item
-	      項目二。
-	      %
-	\item
-	      項目三。
-	      %
-	\item
-	      項目四。
-\end{itemize}
+首先會先初始化 \(\textbf W^1\)  、 \(\textbf W^2\) 與 \(\mathbf{b^2}\) ，其中 \(\mathbf{W^1}\) 的中心點可以利用kmeans演算法得到，則\(\textbf W^2\) 與 \(\mathbf{b^2}\)可隨機生成。接著將所有的資料集進行訓練，利用自行選定的Radial Basis Function計算每筆 \(\mathbf x\)與每個中心點的 \(\{h_1,...,h_{S_1}\}\)，以及計算其輸出結果 \(\mathbf{y}\)，並透過最小平方法更新 \(\mathbf{W^2}\) 與 \(\mathbf{b}\) 的值。直到達到訓練條件。
 
-流程圖如\ref{fig:ResearchFlowChart}。
-\begin{figure}[htbp]
+\begin{figure}[H]
 	\centering
-	\includegraphics[height=8cm]{graphs/introduction/ResearchFlowChart.eps}
-	\caption{研究進行流程圖}
-	\label{fig:ResearchFlowChart}
+	\input{workflow/rbf_workflow.tex}
+	\caption{演算法流程圖}
+	\label{fig:alogrithm_workflow}
 \end{figure}
+
+\section {總結}
+圖\ref{fig:rbf_outcome}為一個二維資料進行RBF Neural Network 訓練的結果，從圖中可以發現分別有紅藍兩類，黑色的*則代表各個中心點，經過訓練後可以在圖上畫出一個決策邊界。
+從這個訓練結果可以明顯的看出RBF Neural Network這個演算法的優點，能順利將這種不可線性分割的資料集進行分類，又因為訓練的參數不多，所以短時間就能訓練出不錯的結果。
+
+此外，在這個演算法中，中心點的數量與位置會影響訓練效果，數量太多會可能會導致訓練結果過擬合，數量太少則會導致訓練的結果不理想，而中心點的位置選的不好，即便數量對了，訓練的效果也可能會不好。
+
+
+
+
+\begin{figure}[h]
+		\centering
+		\includegraphics[height=5cm]{./pic/v35Qta6w.png}
+		\caption{RBF Network以二維資料訓練的示意圖}
+		\begin{minipage}{.7\linewidth}
+		\centering
+        \footnotesize
+		\emph{圖片來源:}取自Radial Basis Function Network (RBFN) Tutorial 
+    \end{minipage}
+		\label{fig:rbf_outcome}
+	\end{figure}
+

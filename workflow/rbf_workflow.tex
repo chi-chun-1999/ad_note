@@ -1,0 +1,21 @@
+	\resizebox{300pt}{400pt}{
+		\begin{tikzpicture}[scale=1]
+			\node[draw, rounded corners,align=center ]                        (start)   {初始化參數 \(\mathbf{W^1,W^2,b^2}\) };
+			\node[draw,diamond, below=20pt of start,align = center]                        (input_x)  {訓練 \(\mathbf{x}\) 中的\\每一筆資料};
+			\node[draw,  aspect=2, below=20pt of input_x, align = center]     (caculate_rbf_layer)  {計算Radial Basis Layer中的\\  \(h_1(x),h_2(x),...,h_j(x),..h_{S_1}(x)\)  };
+			\node[draw,  aspect=2, below=20pt of caculate_rbf_layer, align = center]     (caculate_output_layer)  {計算Output Layer中的\\  \(y_1,y_2,...,y_k,..y_{S_2}\)  };
+			\node[draw, below=20pt of caculate_output_layer,align = center]                   (update_output_weight)  {比對 \(y_k\)與 \(T\)\\ 接著利用最小平方法計算並更新 \(W^2\)   };
+			\node[draw,diamond, below=20pt of update_output_weight,align = center]                         (end_detect)  {判斷是否\\達到結束條件};
+			\node[draw, rounded corners, below=20pt of end_detect]  (end)     {End};
+
+			\draw[->] (start)  --coordinate(le) (input_x);
+			\draw[->] (input_x) --node[left]{Yes} (caculate_rbf_layer);
+			\draw[->] (input_x.west) --node[above]{No}++(-60pt,0)|-(end_detect.west);
+			\draw[->] (caculate_rbf_layer) -- (caculate_output_layer);
+			\draw[->] (caculate_output_layer) -- (update_output_weight);
+			\draw[->] (update_output_weight) -> (end_detect);
+			\draw[->] (end_detect) -- node[left]{Yes}(end);
+			\draw[->] (end_detect.east) --node[above]{No}++(250pt,0pt)|-(le) ;
+
+		\end{tikzpicture}
+	}
