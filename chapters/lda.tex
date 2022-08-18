@@ -19,35 +19,50 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 %\end{figure}
 
 
-\section{實例說明}
+\section{相關參數與實例說明}
 為了更簡單理解這個演算法的數學義意，以下舉一個例子說明：
 
 
+\subsection{相關參數}
 
 \begin{itemize}
+	\item 
+		\(\mathbf{S_w}\) ：組內離散程度矩陣。
+	\item 
+		\(\mathbf{S_b}\) ：組間離散程度矩陣。
+	\item 
+		\(S_w\) ：組內離散程度。
+\end{itemize}
+
+\subsection{實例說明}
+\begin{itemize}
 	\item
-	      圖\ref{fig:pca_demostrate}為一個具有兩個維度的資料分佈圖。
+	      圖\ref{fig:lda_demostrate}為一個具有兩個維度的資料分佈圖，分別有黃、藍、綠三類。
 	      \begin{figure}[h]
 		      \centering
-		      \includegraphics[width=9cm]{pic/pca_demostrate.png}
+		      \includegraphics[width=6cm]{./pic/gAKU29VT.png}
 		      \caption{二維資料}
-		      \label{fig:pca_demostrate}
-
-
+		      \label{fig:lda_demostrate}
 	      \end{figure}
 
 
 	      %
 	\item
+		利用式 \ref{eqn:within_class_scatter}計算組內離散程度，
+
+		\begin{equation}
+		      \label{eqn:within_class_scatter}
+			S_w =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
+		\end{equation}
+
 	      而PCA這個演算法的目的就是希望從這些資料點中如圖\ref{fig:pca_vector_to_find}，找出投影向量，使得這些資料點投影在這些向量上後具有最大的變異數\footnote{\noindent 變異數：為對數據的變異程度的衡量，常用來量測資料分散程度之指標值，變異數其定義為 \(\sigma^2=\frac{{}\sum^{N}_{i}(x_i-\mu )^2}{N}\) }。
 	      \begin{figure}[h]
 		      \centering
-		      \includegraphics[width=9cm]{./pic/iVu9zQYG.png}
+		      \includegraphics[width=6cm]{./pic/iVu9zQYG.png}
 		      \caption{}
 		      \label{fig:pca_vector_to_find}
 	      \end{figure}
 	      %
-	      \newpage
 	\item
 	      圖 \ref{fig:two_vector_project}為部分資料集於兩向量上的投影示意圖，從圖 \ref{fig:pca_project_all}可以發現，資料於\(\vec{v}\)上的投影擁有較小的變異數。
 	      \begin{figure}[h]
