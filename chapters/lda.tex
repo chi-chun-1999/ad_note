@@ -26,21 +26,29 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 \subsection{相關參數}
 
 \begin{itemize}
-	\item 
-		\(\mathbf{S_w}\) ：組內離散程度矩陣。
-	\item 
-		\(\mathbf{S_b}\) ：組間離散程度矩陣。
-	\item 
-		\(S_w\) ：組內離散程度。
+	\item
+	      \(\mathbf{S_w}\) 為組內離散程度矩陣，不同類別中的資料變異量總合。而 \(\mathbf{{S_w}'}\)是經過投影後的組內離散程度矩陣。
+	\item
+	      \(\mathbf{S_b}\) 為組間離散程度矩陣，表示兩兩類別之間群心的變異量的總合。\(\mathbf{{S_b}'}\) 為投影後的組間離散程度矩陣。
+	\item
+	      \(u\) ：所有資料均值。
+	\item
+	      \(u_i\) ：第i類資料均值。
+	\item
+	      \(x_i\) ：第i筆資料。
+	\item
+	      \(n_i\) ：屬於i類的資料個數。
+	\item
+	      \(w\) ：投影軸。
 \end{itemize}
 
 \subsection{實例說明}
 \begin{itemize}
 	\item
-	      圖\ref{fig:lda_demostrate}為一個具有兩個維度的資料分佈圖，分別有黃、藍、綠三類。
+	      圖\ref{fig:lda_demostrate}為一個具有兩個維度的資料分佈圖，分別有黃、藍、灰三類。
 	      \begin{figure}[h]
 		      \centering
-		      \includegraphics[width=6cm]{./pic/gAKU29VT.png}
+		      \includegraphics[width=6cm]{pic/lda_dataset.png}
 		      \caption{二維資料}
 		      \label{fig:lda_demostrate}
 	      \end{figure}
@@ -48,67 +56,75 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 
 	      %
 	\item
-		利用式 \ref{eqn:within_class_scatter}計算組內離散程度，
+	      由式\ref{eqn:lda_within_transform}計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。式 \ref{eqn:lda_within}可以發現 \(\mathbf{S_w}\) 就是不同類別的變異數總合。
+	      \begin{equation}
+		      \label{eqn:lda_within}
+		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
+	      \end{equation}
 
-		\begin{equation}
-		      \label{eqn:within_class_scatter}
-			S_w =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
-		\end{equation}
+	      \begin{equation}
+		      \label{eqn:lda_within_transform}
+		      \begin{aligned}
+			      \mathbf{{S_w}'} & =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (w^Tx_k - w^Tu_i)(w^Tx_k-w^Tu_i)^T
+			      \\& =w^T(\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T)w
+			      \\& =w^TS_ww
+		      \end{aligned}
+	      \end{equation}
 
-	      而PCA這個演算法的目的就是希望從這些資料點中如圖\ref{fig:pca_vector_to_find}，找出投影向量，使得這些資料點投影在這些向量上後具有最大的變異數\footnote{\noindent 變異數：為對數據的變異程度的衡量，常用來量測資料分散程度之指標值，變異數其定義為 \(\sigma^2=\frac{{}\sum^{N}_{i}(x_i-\mu )^2}{N}\) }。
-	      \begin{figure}[h]
+
+	\item
+	      由式 \ref{eqn:lda_transform_class_scatter}計算投影過後的組間離散程度 \(\mathbf{{S_b}'}\) 。一樣可以發現 \(\mathbf{{S_b}'}\)
+
+	      \begin{equation}
+		      \label{eqn:between_class_scatter}
+		      \mathbf{S_b} =\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T
+	      \end{equation}
+
+	      \begin{equation}
+		      \label{eqn:lda_transform_class_scatter}
+		      \begin{aligned}
+			      \\&\mathbf{{S_b}'} =\sum_{i=1}^{c}\sum_{i \neq j } (w^Tu_i - w^Tu_j)(w^Tu_i - w^Tu_j)^T
+			      \\& =w^T(\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T)w
+			      \\& =w^TS_bw
+		      \end{aligned}
+	      \end{equation}
+
+
+
+	      \begin{figure}[H]
 		      \centering
-		      \includegraphics[width=6cm]{./pic/iVu9zQYG.png}
-		      \caption{}
-		      \label{fig:pca_vector_to_find}
+		      \includegraphics[height=5cm]{./pic/0JcYc52J.png}
+		      \caption{部分資料經過投影的結果}
+		      \label{fig:lda_transform}
 	      \end{figure}
+
+	\item
+		根據前一小節提到的，希望投影過後「組內離散程度越小越好，組間離散程度越大越好」，最後會希望找到一個 \(w\)，使得\(\frac{\mathbf{S_b}}{\mathbf{S_w}}\) 越大越好，如式\ref{eqn:find_maximun}。
+
+	      \begin{equation}
+		      \label{eqn:find_maximun}
+			  \underset{w}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} =\underset{w,w^TS_ww = 1}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} 
+	      \end{equation}
+
+
 	      %
 	\item
-	      圖 \ref{fig:two_vector_project}為部分資料集於兩向量上的投影示意圖，從圖 \ref{fig:pca_project_all}可以發現，資料於\(\vec{v}\)上的投影擁有較小的變異數。
-	      \begin{figure}[h]
+		最後，圖\ref{fig:lda_data_lda_transfrom}為此資料經過LDA轉換的結果，資料明顯變得比較散，也變得比較好區分。此外，圖\ref{fig:lda_data_pca_transfrom}為經過PCA轉換的結果，雖然比原資料來的好，但是與LDA的結果相比，還是差了一些。
+	      \begin{figure}[H]
 		      \begin{center}
 			      \begin{tabular}{ccccccccccccc}
-				      \subfigure[資料於\(\vec{v}\)上的投影 ]{\includegraphics[width=5cm]{pic/pca_project_1.jpg}\label{fig:typeA} } \par &
-				      \subfigure[資料於\(\vec{{v}'}\)上的投影]{\includegraphics[width=5cm]{pic/pca_project_2.jpg}\label{fig:typeA} } \par \\
+					  \subfigure[資料經過LDA轉換的結果 ]{\includegraphics[width=7cm]{pic/lda_dataset_lda_transform.png}\label{fig:lda_data_lda_transfrom} } \par &
+				      \subfigure[資料經過PCA轉換的結果]{\includegraphics[width=7cm]{pic/lda_dataset_pca_transform.png}\label{fig:lda_data_pca_transfrom} } \par \\
 			      \end{tabular}
-			      \caption{部分資料集投影於兩向量上示意圖}
+			      \caption{資料集經過LDA與PCA轉換的結果}
 			      \label{fig:two_vector_project}
 		      \end{center}
 	      \end{figure}
 
-	      \begin{figure}[H]
-		      \centering
-		      \includegraphics[width=6cm]{pic/pca_project_all.jpg}
-		      \caption{\(\vec{v}\) 與\(\vec{{v}'}\)的變異數比較}
-		      \label{fig:pca_project_all}
-	      \end{figure}
-
-	      %
-	\item
-	      此資料經過PCA的計算之後，我們可以得到比較有代表性的兩個特徵成份，較長的為PC1，較短的為PC2，如圖\ref{fig:pc1_and_pc2}所示，而變異量的值分別為0.7625與0.0184 。
-	      \begin{figure}[H]
-		      \centering
-		      \includegraphics[width=9cm]{pic/pca_with_pca_axis.png}
-		      \caption{}
-		      \label{fig:pc1_and_pc2}
-	      \end{figure}
-
-
-	\item
-	      圖\ref{fig:pca_transform}為資料集經過PCA轉換的結果，橫軸為PC1，縱軸為PC2，能從圖中與上面得到的變異量發現，PC1所函概的資訊足以代表整個資料集。進而將原本二維的資料，轉換成一維，作為模型訓練的輸⼊。
-
-
-	      \begin{figure}[H]
-		      \centering
-		      \includegraphics[width=9cm]{pic/pca_transform.png}
-		      \caption{}
-		      \label{fig:pca_transform}
-	      \end{figure}
 
 \end{itemize}
 
 
 \section {結論}
-從以上的舉例中，可以發現，經由PCA的轉換，我們可以分析出對於整個資料集最具代表性的成份，作為後序模型訓練的輸⼊。
-也許二維的資料可能沒那麼明顯，但如果是影像資料（通常是具有高維度的資料），除了能夠有效的進行資料降維，提取影像中重要的特徵，還能因為維度的減少進而提高分類的運算速度。
 
+從以上的實例中可以發現，因為LDA屬於監督式學習法，可以根據本生的類別，進行有效的降維，也因此相比之下，雖然運算時間較長，但能有比PCA有更好的效果。除此之外，也能發現經過LDA的分析後，我們僅需要一個維度就可以順利的將三個類別分離，可見LDA在進行降維處理，有著顯著的效果。
