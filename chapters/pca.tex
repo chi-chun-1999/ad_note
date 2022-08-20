@@ -20,25 +20,39 @@ Principal Component Analysis，是一種非監督式的資料降維演算法，
 	\label{fig:curse_of_dimesionality}
 \end{figure}
 
-\section{實例說明}
+\section{相關參數與實例說明}
 為了更簡單理解這個演算法的數學義意，以下舉一個例子說明：
 
+\subsection{相關參數}
+\begin{itemize}
+	\item
+		\(\mathbf{x}\) 為原資料點， \(\overline{x}\) 表示原資料的均值。
+	\item
+	     \(\mathbf{z}\) 為過投影後資料點的值，\(\overline{z}\)則為投影後的均值。 
+	\item
+	      \(\mathbf{S}\) 資料變異量。而 \(\mathbf{{S}'}\)是資料經過投影後的變異量量。
+	\item
+	      \(v\) ：投影向量。
+\end{itemize}
 
+
+\subsection{實例說明}
 
 \begin{itemize}
 	\item
 	      圖\ref{fig:pca_demostrate}為一個具有兩個維度的資料分佈圖。
+
+
 	      \begin{figure}[h]
 		      \centering
 		      \includegraphics[width=9cm]{pic/pca_demostrate.png}
 		      \caption{二維資料}
 		      \label{fig:pca_demostrate}
-
-
 	      \end{figure}
 
 
 	      %
+	\newpage
 	\item
 	      而PCA這個演算法的目的就是希望從這些資料點中如圖\ref{fig:pca_vector_to_find}，找出投影向量，使得這些資料點投影在這些向量上後具有最大的變異數\footnote{\noindent 變異數：為對數據的變異程度的衡量，常用來量測資料分散程度之指標值，變異數其定義為 \(\sigma^2=\frac{{}\sum^{N}_{i}(x_i-\mu )^2}{N}\) }。
 	      \begin{figure}[h]
@@ -48,19 +62,41 @@ Principal Component Analysis，是一種非監督式的資料降維演算法，
 		      \label{fig:pca_vector_to_find}
 	      \end{figure}
 	      %
-	      \newpage
 	\item
-		圖 \ref{fig:two_vector_project}為部分資料集於兩向量上的投影示意圖，從圖 \ref{fig:pca_project_all}可以發現，資料於\(\vec{v}\)上的投影擁有較小的變異數。 
-	      \begin{figure}[h]
+		式\ref{eqn:project_data}為投資料投影的公式，圖 \ref{fig:vector_project}為部分資料集於兩向量上的投影示意圖。 
+		\begin{equation}
+			\label{eqn:project_data}
+			 z = vx
+		\end{equation}
+
+
+	      \begin{figure}[H]
 		      \begin{center}
-			      \begin{tabular}{ccccccccccccc}
-					  \subfigure[資料於\(\vec{v}\)上的投影 ]{\includegraphics[width=5cm]{pic/pca_project_1.jpg}\label{fig:typeA} } \par &
-					  \subfigure[資料於\(\vec{{v}'}\)上的投影]{\includegraphics[width=5cm]{pic/pca_project_2.jpg}\label{fig:typeA} } \par   \\
-			      \end{tabular}
-			      \caption{部分資料集投影於兩向量上示意圖}
-			      \label{fig:two_vector_project}
+		      \includegraphics[width=5cm]{pic/pca_project_1.jpg}
+			      \caption{部分資料集投影於向量上示意圖}
+			      \label{fig:vector_project}
 		      \end{center}
 	      \end{figure}
+
+	\item
+		式\ref{eqn:variance_with_project}為資料進過投影後的變異量運算式。而圖 \ref{fig:pca_project_all}為部分資料集於兩向量上的投影示意圖，從圖 \ref{fig:pca_project_all}可以發現，資料於\(\vec{v}\)上的投影擁有較大的變異數。 
+
+	      \begin{equation}
+		      \label{eqn:variance}
+		      \mathbf{S}  =\sum_{i=1} (x_i - \overline{x})(x_i-\overline{x})^T
+	      \end{equation}
+
+	      \begin{equation}
+		      \label{eqn:variance_with_project}
+		      \begin{aligned}
+				  \mathbf{{S}'} &=\sum_{i=1} (z_i - \overline{z})(z_i-\overline{z})^T 
+				  \\&=\sum_{i=1} (vx_i - v\overline{x})(vx_i-\overline{x})^T
+				  \\&=v^T(\sum_{i=1} (x_i - w\overline{x})(x_i-\overline{x})^T)v
+				  \\&=v^T\mathbf{S}v
+		      \end{aligned}
+	      \end{equation}
+
+
 
 	      \begin{figure}[H]
 		      \centering
@@ -71,7 +107,18 @@ Principal Component Analysis，是一種非監督式的資料降維演算法，
 	      
 	      %
 	\item
-		此資料經過PCA的計算之後，我們可以得到比較有代表性的兩個特徵成份，較長的為PC1，較短的為PC2，如圖\ref{fig:pc1_and_pc2}所示，而變異量的值分別為0.7625與0.0184 。
+		在PCA中，就是找出一個投影向量 \(v\) ，使得所有資料經過投影能有最大的變異數，如式\ref{eqn:max_projet_vector}。
+		\begin{equation}
+			\label{eqn:max_projet_vector}
+			v = arg \underset{||v||_2=0}{max}\  v^TSv			
+		\end{equation}
+
+
+		\newpage
+	\item
+		經過PCA的計算之後，我們可以得到比較有代表性的兩個特徵成份，較長的為PC1，較短的為PC2，如圖\ref{fig:pc1_and_pc2}所示，而變異量的值分別為0.7625與0.0184 。
+
+
 	      \begin{figure}[H]
 		      \centering
 		      \includegraphics[width=9cm]{pic/pca_with_pca_axis.png}
