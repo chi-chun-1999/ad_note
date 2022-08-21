@@ -2,7 +2,7 @@
 \label{chapter:rbf}
 \section{簡介}
 \label{sec:rbf_introduction}
-Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_network}爲它的網路架構圖，其中有三層網路，分別爲輸入、隱藏層與輸出層。在介紹這個演算法前我們先來看看圖\ref{fig:percepton_problem}，在\ref{fig:percepton_Pa}、\ref{fig:percepton_Pb}情況下，我們都可以利用一條線兩種不同類別分割，但是遇到\ref{fig:percepton_Pc}的情況，卻不能用一條線將兩個類別分割出來，由此可見這就是Single Perceptron缺點。而RBF這個演算法的優勢就在於，可以解決了Single Perceptron與MLP在某些情況下線性不可切割的問題，可以將不可線性分割的資料集轉換到另一個維度如圖\ref{Fig:rbf_transfer}所示，使得轉換過的資料變成可線性分割的問題。
+Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:rbf_network}爲它的網路架構圖，其中有三層網路，分別爲輸入、隱藏層與輸出層。在介紹這個演算法前我們先來看看圖\ref{fig:percepton_problem}，在\ref{fig:percepton_Pa}、\ref{fig:percepton_Pb}情況下，我們都可以利用一條線兩種不同類別分割，但是遇到\ref{fig:percepton_Pc}的情況，卻不能用一條線將兩個類別分割出來，由此可見這就是Single Perceptron缺點。而RBF這個演算法的優勢就在於，可以解決了Single Perceptron在某些情況下線性不可切割的問題，可以將不可線性分割的資料集轉換到另一個維度如圖\ref{Fig:rbf_transfer}所示，使得轉換過的資料變成可線性分割的問題。
 \begin{figure}[htbp]
 	\centering
 	\centerline{\includegraphics[width=10cm]{pic/rbf_struct.png}}
