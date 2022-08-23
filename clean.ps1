@@ -1,0 +1,15 @@
+rm *.log
+rm *.synctex
+rm *.aux
+rm *.lof
+rm *.lot
+rm *.toc
+rm *.synctex
+rm *.bak
+rm *.bbl
+rm *.blg
+rm *.pdf
+rm chapters\*.bak
+rm *.fls
+rm *.xdv
+rm *.fdb_latexmk
