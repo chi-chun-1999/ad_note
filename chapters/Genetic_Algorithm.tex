@@ -6,7 +6,7 @@ GA主要由三種運算組成，分別為親代選擇、交叉與突變。首先
 \begin{figure}[H]
 	\centerline{\includegraphics[height=8cm]{pic/GAprocessrevise .png}}
 	\caption{GA流程圖}
-	\label{fig:GApro}
+	\label{fig:GAFlowChart}
 \end{figure}
 
 \label{sec:background}
@@ -31,12 +31,12 @@ GA使用選擇運算子來對群體中的個體進行優勝劣汰操作：根據
                 \begin{figure}[H]
             \centerline{\includegraphics[width=10cm]{pic/Wheel.PNG}}
             \caption{基因編碼與適應度}
-            \label{fig:wheel}
+            \label{fig:GeneEncodeAndFitness}
         \end{figure}
                  \begin{figure}[H]
             \centerline{\includegraphics[width=10cm]{pic/wheelFitness.png}}
             \caption{輪盤法適應度百分比圖}
-            \label{fig:wheelf}
+            \label{fig:WheelMethodPercentage}
         \end{figure}
         如果群體的適應度差異巨大時，最佳個體的被選擇機率會大幅成長，容易使這個最佳個體充斥在當前群體中，使得群體喪失多樣性，過早失去進化能力。
        
@@ -51,20 +51,20 @@ GA使用選擇運算子來對群體中的個體進行優勝劣汰操作：根據
 \begin{enumerate}
 	\item
 	      單點交叉:
-	      單點交叉算法就是指定了單個交換點用於父輩的基因交換重組。如圖\ref{fig:one}
+	      單點交叉算法就是指定了單個交換點用於父輩的基因交換重組。如圖\ref{fig:SinglePointCross}
 	      \begin{figure}[H]
 		      \centerline{\includegraphics[height=8cm]{pic/one.PNG}}
 		      \caption{單點交叉示意圖}
-		      \label{fig:one}
+		      \label{fig:SinglePointCross}
 	      \end{figure}
 
 	\item
 	      多點交叉:
-	      多點交叉算法就是指定了多個交換點用於父輩的基因交換重組。如圖\ref{fig:two}
+	      多點交叉算法就是指定了多個交換點用於父輩的基因交換重組。如圖\ref{fig:MultiPointCross}
 	      \begin{figure}[H]
 		      \centerline{\includegraphics[height=8cm]{pic/TWO.PNG}}
 		      \caption{多點交叉示意圖}
-		      \label{fig:two}
+		      \label{fig:MultiPointCross}
 	      \end{figure}
 
 	\item

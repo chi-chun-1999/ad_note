@@ -2,10 +2,10 @@
 \label{chapter:lvq}
 \section{簡介}
 
-%%圖\ref{fig:lvq_network}爲LVQ的網路架構圖。SOM是一個分群的演算法，如果將它的概念轉成監督式學習，就是LVQ演算法的由來。這個演算法可用於分類的應用，且具有簡單的架構。
+%%圖\ref{fig:LvqNetwork}爲LVQ的網路架構圖。SOM是一個分群的演算法，如果將它的概念轉成監督式學習，就是LVQ演算法的由來。這個演算法可用於分類的應用，且具有簡單的架構。
 
 學習向量量化(Learning Vector Quantization，簡稱爲LVQ)，可以將其視爲是一種人工神經網路的特例。
-圖\ref{fig:lvq_network}爲LVQ的網路架構圖。
+圖\ref{fig:LvqNetwork}爲LVQ的網路架構圖。
 從圖中可以發現這個網路僅具有輸入與輸出兩層，所以是一個結構相當簡單的神經網路，並且是一個具有監督式學習的分類演算法。
 此外，在這個演算法中，採取了非監督式學習的機制，應用於監督式學習的問題上。
 
@@ -17,7 +17,7 @@
 		\footnotesize
 		\emph{圖片來源:}取自Seafloor sediment classification from single beam echo sounder data using LVQ network
 	\end{minipage}
-	\label{fig:lvq_network}
+	\label{fig:LvqNetwork}
 \end{figure}
 \label{sec:background}
 
@@ -29,17 +29,17 @@
 LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷的更新代表的位置，進而找出最佳的codebook。
 
 
-從圖\ref{fig:data_after_vq}，可以看到原資料被分割成3個區域，以及3個紅色方點，而紅色方點就是整個分割區域中的代表點，也是LVQ中的weight vetcor。
+從圖\ref{fig:DataAfterVq}，可以看到原資料被分割成3個區域，以及3個紅色方點，而紅色方點就是整個分割區域中的代表點，也是LVQ中的weight vetcor。
 
 
 \begin{figure}[h]
 	\begin{center}
 		\begin{tabular}{ccccccccccccc}
 			\subfigure[原資料集分佈]{\includegraphics[height=4cm]{./pic/oA5nFv7C.png}\label{fig:ori_data} } \par &
-			\subfigure[經過向量量化的原資料]{\includegraphics[height=4cm]{./pic/aLVdIIWU.png}\label{fig:data_after_vq} } \par \\
+			\subfigure[經過向量量化的原資料]{\includegraphics[height=4cm]{./pic/aLVdIIWU.png}\label{fig:DataAfterVq} } \par \\
 		\end{tabular}
 		\caption{向量量化的示意圖}
-		\label{fig:vector_quantization}
+		\label{fig:VectorQuantization}
 	\end{center}
 \end{figure}
 
@@ -96,7 +96,7 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 
 \subsection{流程}
 
-首先會先初始化 \(\mathbf{W^1},\alpha\)，接著將所有的訓練資料集中的每一筆資料，找出與每筆資料最近權重向量，並接著判斷 \(\mathbf{y}\) 的結果是否符合這筆資料的類別，如果相同就使得這個權重向量靠近這筆資料點且更新學習率，反之，如果不同則遠離。接著不斷重複以上步驟，直到訓練次數或是學習率達到設定的標準，則停止模型訓練。下圖爲演算法的流程圖\ref{fig:alogrithm_workflow}。
+首先會先初始化 \(\mathbf{W^1},\alpha\)，接著將所有的訓練資料集中的每一筆資料，找出與每筆資料最近權重向量，並接著判斷 \(\mathbf{y}\) 的結果是否符合這筆資料的類別，如果相同就使得這個權重向量靠近這筆資料點且更新學習率，反之，如果不同則遠離。接著不斷重複以上步驟，直到訓練次數或是學習率達到設定的標準，則停止模型訓練。下圖爲演算法的流程圖\ref{fig:AlogrithmWorkflow}。
 
 \newpage
 
@@ -109,7 +109,7 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 	\centering
 	\input{workflow/lvq_workflow.tex}
 	\caption{演算法流程圖}
-	\label{fig:alogrithm_workflow}
+	\label{fig:AlogrithmWorkflow}
 \end{figure}
 
 
@@ -143,14 +143,14 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 	\centering
 	\includegraphics[height=10cm]{./pic/2nSRVeud.png}
 	\caption{資料集在座標軸的分佈}
-	\label{fig:dataset_in_axis}
+	\label{fig:DatasetInAxis}
 \end{figure}
 
 \newpage
 \begin{enumerate}
 	\item
 	      首先先初始化 \(\mathbf{W}\)，因爲這次的範例中只有兩個類別，這邊以 \(\mathbf{w_1}=(3,1),\mathbf{w_2}=(7,4)\)作爲初始化的兩個weight vector。並將學習率 \(\alpha\)的初始值設爲0.5，以及iteration設定爲100。
-	      圖 \ref{fig:dataset_in_axis}爲此資料集與初始兩個weitght在座標軸的分佈。
+	      圖 \ref{fig:DatasetInAxis}爲此資料集與初始兩個weitght在座標軸的分佈。
 	      %
 	\item
 	      接著計算第一筆資料與兩個weight vector的歐式距離，並比較兩個距離的大小。
@@ -177,23 +177,23 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 
 
 	\item
-		依序將所有資料集輸入，並依照以上的步驟，比較各個資料與兩個weight vector之間的距離，接著更新權重與學習率。圖\ref{fig:lvq_weight_move}爲第一次迭代的兩個權重的移動路徑。
+		依序將所有資料集輸入，並依照以上的步驟，比較各個資料與兩個weight vector之間的距離，接著更新權重與學習率。圖\ref{fig:LvqWeightMove}爲第一次迭代的兩個權重的移動路徑。
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=10cm]{pic/lvq_weight_move.png}
 	\caption{權重向量第一次迭代的移動路徑}
-	\label{fig:lvq_weight_move}
+	\label{fig:LvqWeightMove}
 \end{figure}
 
 	      %
 	\item 
-		不斷重複以上2\char`\~ 5的步驟，直到設定的iteration到100爲止。圖\ref{fig:lvq_100_iteration}爲此資料集經過100次迭代的結果，可以發現權重向量移動的步伐因爲學習率的縮小，移動的越來越小，也因此它的值也漸漸固定不在改變，此外這兩個權重向量分別往兩個類別的群心點靠近。
+		不斷重複以上2\char`\~ 5的步驟，直到設定的iteration到100爲止。圖\ref{fig:Lvq100Iteration}爲此資料集經過100次迭代的結果，可以發現權重向量移動的步伐因爲學習率的縮小，移動的越來越小，也因此它的值也漸漸固定不在改變，此外這兩個權重向量分別往兩個類別的群心點靠近。
 \begin{figure}[h!]
 	\centering
 	\includegraphics[height=10cm]{pic/lvq_100_iteration.png}
 	\caption{經過100次迭代的結果}
-	\label{fig:lvq_100_iteration}
+	\label{fig:Lvq100Iteration}
 \end{figure}
 
 \end{enumerate}
