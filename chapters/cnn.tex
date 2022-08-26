@@ -25,7 +25,7 @@
 %\end{itemize}
 
 
-圖\ref{fig:Convolution}與圖\ref{fig:ConvolutionFinally}，第一格的計算如式\ref{eqn:ConvolutionCaculate}結果為1。一次往右一格以此類推進行計算，到邊界時往下一列從新的一行開始計算，最後得出卷積(Convolution)結果。
+圖\ref{fig:Convolution}與圖\ref{fig:ConvolutionFinally}，第一格的計算如式(\ref{eqn:ConvolutionCaculate})結果為1。一次往右一格以此類推進行計算，到邊界時往下一列從新的一行開始計算，最後得出卷積(Convolution)結果。
 
 \begin{equation}
 	\label{eqn:ConvolutionCaculate}
@@ -50,7 +50,7 @@
 
 卷積前後影像大小改變:
 
-是否進填充將影響影像大小的改變，上述例子是採用VALID padding圖\ref{fig:Convolution}，不在原有的影象基礎上做任何填充，但這樣會有個缺點，在卷積多次後，可能使邊緣的畫素和卷積核做卷積的次數小於影象中間的畫素點，從而導致對其資訊的特徵的提取不足。
+是否進填充將影響影像大小的改變，上述例子是採用VALID padding，如圖\ref{fig:Convolution}，不在原有的影象基礎上做任何填充，但這樣會有個缺點，在卷積多次後，可能使邊緣的畫素和卷積核做卷積的次數小於影象中間的畫素點，從而導致對其資訊的特徵的提取不足。
 
 
 所以另一個方法SAME padding，使得做卷積運算後，原始影象的大小會保持原樣。
@@ -101,10 +101,10 @@
 	      S為步長(每次移動遮罩的距離)
 \end{itemize}
 
-圖\ref{fig:Convolution}是5X5的影像，經過3X3濾波器每次一步，不進行填充卷積後影像為圖\ref{fig:ConvolutionFinally}，計算大小(5-3+2*0)/1+1=3，卷積後影像大小為3X3
+圖\ref{fig:Convolution}是 \(5 \times5\)的影像，經過\(3 \times 3\)濾波器每次一步，不進行填充卷積後影像為圖\ref{fig:ConvolutionFinally}，計算大小(5-3+2*0)/1+1=3，卷積後影像大小為 \(3 \times 3\) 
 
 
-圖\ref{fig:SamePadding}是5X5的影像經過3X3濾波器每次一步，進行填充，卷積後影像為圖\ref{fig:SamePaddingOutcome}，計算大小(5-3+2*1)/1+1=5，卷積後影像大小為5X5
+圖\ref{fig:SamePadding}是\(5 \times 5\)的影像經過\(3 \times 3\)濾波器每次一步，進行填充，卷積後影像為圖\ref{fig:SamePaddingOutcome}，計算大小(5-3+2*1)/1+1=5，卷積後影像大小為 \(5 \times 5\)
 
 
 
@@ -113,7 +113,7 @@
 對影像進行欠取樣(Undersampling)使影像大小在不改變特徵時減少像素，達到減少運算時的數據量。
 上述方法稱為：池化，池化是先在圖片上選取不同窗口（window），並在這個窗口範圍中依據不同方法選擇一個特徵值。
 
-如果是使用2X2的窗口，原圖經過池化以後，其所包含的像素數量會降為原本的四分之一，如\ref{fig:PoolingLayer}圖6X6的圖檔經過2X2的窗口進行池化，變成3X3的特徵圖
+如果是使用\(2 \times 2\)的窗口，原圖經過池化以後，其所包含的像素數量會降為原本的四分之一，如圖\ref{fig:PoolingLayer}中 \(6 \times6\) 的圖檔經過\(2 \times 2\)的窗口進行池化，變成\(3 \times 3\)的特徵圖
 但因為池化後的圖片包含了原圖中各個範圍的特徵值，保留了每個範圍內各個特徵的相符程度。池化後的資訊更專注於圖片中是否存在相符的特徵，而非圖片中哪裡存在這些特徵。這能幫助 CNN 判斷圖片中是否包含某項特徵，而不必分心於特徵的位置。
 
 \begin{itemize}
@@ -150,7 +150,7 @@
 將所有特徵圖變為一維度，並組合在一起來進行輸出分類，簡單的來說就是一個分類器，把我們經過數個卷積、池化後的結果進行分類。
 把我們經過數個卷積、池化後的結果進行分類。通 常 在 全 連 接 層 與 輸 出 層 間 會 使 用 Softmax(歸一化指數函式)函數來輸出機率，使所有類別的機率和為1。
 它能將一個含任意實數的K維向量「壓縮」到另一個K維實向量 中，使得每一個元素的範圍都在(0,1)之間，並且所有元素的和為1。
-Softmax公式\ref{eqn:Softmax}
+Softmax公式(\ref{eqn:Softmax})
 \begin{equation}
 	\label{eqn:Softmax}
 	\sigma(z)_j=\frac{e^{z_j}}{\sum_{k=1}^{K}e^{zk}} \ \ \ \ \ \ \ \ \ for\ 1,....,K
@@ -171,7 +171,7 @@ model.add（激活函數）
 	\item
 	      padding方法:有VALID padding和SAME padding
 	\item
-	      激活函數使用ReLU函數，式\ref{eqn:ReLU}
+	      激活函數使用ReLU函數，式(\ref{eqn:ReLU})
 	      \begin{equation}
 		      \label{eqn:ReLU}
 		      Relu(x)=

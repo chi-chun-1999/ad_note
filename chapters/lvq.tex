@@ -11,7 +11,7 @@
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=10cm]{./pic/lvq_struct.png}
+	\includegraphics[width=10cm]{pic/lvq_architecture.jpg}
 	\caption{LVQ網路架構圖}
 	\begin{minipage}{.7\linewidth}
 		\footnotesize
@@ -65,10 +65,10 @@ LVQ就是基於這個演算法的概念進行，透過監督式學習，不斷�
 
 	      %
 	\item
-	      競爭層權重，\(\mathbf{W^1} = (\mathbf{w_1,w_2,...,w_j,...w_R})^T\)，爲一個 \(S^1 \times R \)的矩陣，也就是剛剛介紹Vector Quantization所提到的codebook，這邊的 \(n\)爲輸出的類別數量。
+		競爭層權重，\(\mathbf{W^1} = [\mathbf{w_1,w_2,...,w_j,...w_{S^1}}]\)，爲一個 \(S^1 \times R \)的矩陣，也就是剛剛介紹Vector Quantization所提到的codebook，這邊的 \(S^1\)爲網路層輸出的數量。
 	      %
 	\item
-		權重向量，\(\mathbf{w_{j}} = (w_{1j},w_{2j},w_{3j},....,w_{dj})^T\)，代表每個區域的代表點。
+		權重向量，\(\mathbf{w_{j}} = (w_{1j},w_{2j},w_{3j},....,w_{Rj})\)，代表每個區域的代表點。
 
 	      %
 	\item

@@ -4,7 +4,7 @@
 Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:RbfNetwork}爲它的網路架構圖，其中有三層網路層，分別爲輸入、隱藏層與輸出層。在介紹這個演算法前我們先來看看圖\ref{fig:PerceptonProblem}，在\ref{fig:PerceptonPa}、\ref{fig:PerceptonPb}情況下，我們都可以利用一條線兩種不同類別分割，但是遇到\ref{fig:PerceptonPc}的情況，卻不能用一條線將兩個類別分割出來，由此可見這就是Single Perceptron缺點。而RBF這個演算法的優勢就在於，可以解決了Single Perceptron在某些情況下線性不可切割的問題，可以將不可線性分割的資料集轉換到另一個維度如圖\ref{Fig:RbfTransfer}所示，使得轉換過的資料變成可線性分割的問題。
 \begin{figure}[htbp]
 	\centering
-	\centerline{\includegraphics[width=10cm]{pic/rbf_struct.png}}
+	\centerline{\includegraphics[width=10cm]{pic/rbf_architecture.jpg}}
 	\caption{RBF網路架構圖}
 	\begin{minipage}{.7\linewidth}
 		\footnotesize
@@ -74,7 +74,7 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:RbfNetwo
 
 
 	\item
-	      而這個 \(f(x)\)，其實是由3個不同的函數所組成在外加一個常數項所組成的，如圖\ref{fig:RbfFunctionAssemble}與\ref{eqn:RbfFunction}式所示。而其中的 \(h_1(x)\)、\(h_2(x)\)與\(h_3(x)\)就是就是 Radial Basis Function，藉由他們的組成可以將原本的資料集轉換到另一個維度。
+	      而這個 \(f(x)\)，其實是由3個不同的函數所組成在外加一個常數項所組成的，如圖\ref{fig:RbfFunctionAssemble}與(\ref{eqn:RbfFunction})式所示。而其中的 \(h_1(x)\)、\(h_2(x)\)與\(h_3(x)\)就是就是 Radial Basis Function，藉由他們的組成可以將原本的資料集轉換到另一個維度。
 
 	      \begin{equation}
 		      \label{eqn:RbfFunction}
@@ -90,7 +90,7 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:RbfNetwo
 
 	\item
 	      Radial Basis Function（徑向基函數），之所以有個「Radial」，其實不難想像，就是跟中心點的距離有關係，所以通常這個函數會設定一個中心點，並將其他點與這個中心點的距離代入計算輸出結果。
-	      式 \ref{eqn:RadialBasisFunction}與圖\ref{fig:RadialBasisFunction}，爲一個中心點為1的高斯函數。
+	      式 (\ref{eqn:RadialBasisFunction})與圖\ref{fig:RadialBasisFunction}，爲一個中心點為1的高斯函數。
 	      從圖中也能發現，離中心點越近可以得到越大值，代表與中心點越相關。反之離中心點越遠所得到的值就越小，代表與中心點越不相關。
 
 	      \begin{equation}
@@ -144,7 +144,7 @@ Radial Basis Function Function（簡稱RBF）Network Work，圖\ref{fig:RbfNetwo
 	\item
 	      輸出層權重， \(\mathbf{W^2}= [\mathbf{w_1,w_2,...,w_k,...,w_{S_2}}]^T\)，為一個 \(S_2 \times S_1\) 的矩陣，這邊的 \(S_2\)代表輸出的類別數 。偏移向量為， \(\mathbf{b^2}=(b_1,b_2,....b_{S_2})\)。
 	\item
-	      輸出向量，\(\mathbf{y}= (y_1,y_2,...,y_k,...y_{S_2})\)，其中式 \ref{eqn:RbfOutputLayer}為每個 \(\mathbf{y_k}\)的計算方式。其實仔細觀察可以發現式\ref{eqn:RbfOutputLayer}與式\ref{eqn:RbfFunction}所代表函意相同。
+	      輸出向量，\(\mathbf{y}= (y_1,y_2,...,y_k,...y_{S_2})\)，其中式 (\ref{eqn:RbfOutputLayer})為每個 \(\mathbf{y_k}\)的計算方式。其實仔細觀察可以發現式(\ref{eqn:RbfOutputLayer})與式(\ref{eqn:RbfFunction})所代表函意相同。
 
 	      \begin{equation}
 		      \label{eqn:RbfOutputLayer}
