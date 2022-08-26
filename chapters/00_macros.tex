@@ -24,6 +24,9 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter .\ #1}{}}  % 去除章編號前後的字
 \titleformat{\chapter}[display]{\center\LARGE\sf}{第\ \thechapter\ 章}{0.2cm}{}  %設計章節標題式樣,標題置中
 \titlespacing{\chapter}{0pt}{-50pt}{25pt}   %設計章節標題式樣，控制間距
+\titleformat{\section}
+  {\normalfont\fontsize{17}{15}\bfseries}{\thesection}{1em}{}
+
 %\fancyhead[RO,RE]{\leftmark}   %章節標題於頁眉/頁足上
 \fancyfoot[CO,CE]{\thepage}
 
@@ -75,7 +78,16 @@ mu$}\hfill
 \newtheorem{thmm}{定義}
 
 
+\DeclareCaptionLabelSeparator{comma}{、}
+\captionsetup[figure]{labelsep=comma}
+
+
 %
 %   調整內縮長度(依據學校規定與不同版面、字型調整)
 %
 \parindent=0.85cm
+
+
+
+
+

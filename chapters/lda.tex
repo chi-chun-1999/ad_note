@@ -50,7 +50,10 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 
 	      %
 	\item
-	      由式\ref{eqn:LdaWithinTransform}計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。式 \ref{eqn:LdaWithin}可以發現 \(\mathbf{S_w}\) 就是不同類別的變異數總合。
+	      首先，由式\ref{eqn:LdaWithin}計算不同類別的變異數總合 \(\mathbf{S_w}\)。並由式\ref{eqn:LdaWithinTransform}計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。
+
+	      %%由式\ref{eqn:LdaWithinTransform}計算經過「投影後」的組內離散矩陣 \(\mathbf{{S_w}'}\)。其中 \(\mathbf{S_w}\) 為不同類別的變異數總合。
+
 	      \begin{equation}
 		      \label{eqn:LdaWithin}
 		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
@@ -67,7 +70,7 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 
 
 	\item
-	      由式 \ref{eqn:LdaTransformClassScatter}計算投影過後的組間離散程度 \(\mathbf{{S_b}'}\) 。一樣可以發現 \(\mathbf{{S_b}'}\)
+		接著由式 \ref{eqn:BetweenClassScatter}計算組間離散程度 \(\mathbf{S_b}\)。並由式 \ref{eqn:LdaTransformClassScatter}計算「投影後」的組間離散程度 \(\mathbf{{S_b}'}\) 。
 
 	      \begin{equation}
 		      \label{eqn:BetweenClassScatter}
@@ -93,22 +96,22 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 	      \end{figure}
 
 	\item
-		根據前一小節提到的，希望投影過後「組內離散程度越小越好，組間離散程度越大越好」，最後會希望找到一個 \(w\)，使得\(\frac{\mathbf{S_b}}{\mathbf{S_w}}\) 越大越好，如式\ref{eqn:FindMaximun}。
+	      根據前一小節提到的，希望投影過後「組內離散程度越小越好，組間離散程度越大越好」，最後會希望找到一個 \(w\)，使得\(\frac{\mathbf{S_b}}{\mathbf{S_w}}\) 越大越好，如式\ref{eqn:FindMaximun}。
 
 	      \begin{equation}
 		      \label{eqn:FindMaximun}
-			  \underset{w}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} =\underset{w,w^TS_ww = 1}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} 
+		      \underset{w}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} =\underset{w,w^TS_ww = 1}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}}
 	      \end{equation}
 
 
 	      %
 	\item
-		最後，圖\ref{fig:LdaDataLdaTransform}為此資料經過LDA轉換的結果，資料明顯變得比較散，也變得比較好區分。此外，圖\ref{fig:LdaDataPcaTransform}為經過PCA轉換的結果，雖然比原資料來的好，但是與LDA的結果相比，還是差了一些。
+	      最後，圖\ref{fig:LdaDataLdaTransform}為此資料經過LDA轉換的結果，資料變得比較好區分。此外，圖\ref{fig:LdaDataPcaTransform}為經過PCA轉換的結果，雖然比原資料來的好，但是與LDA的結果相比，還是差了一些。
 	      \begin{figure}[H]
 		      \begin{center}
 			      \begin{tabular}{ccccccccccccc}
-					  \subfigure[資料經過LDA轉換的結果 ]{\includegraphics[width=7cm]{pic/lda_dataset_lda_transform.png}\label{fig:LdaDataLdaTransform} } \par &
-				      \subfigure[資料經過PCA轉換的結果]{\includegraphics[width=7cm]{pic/lda_dataset_pca_transform.png}\label{fig:LdaDataPcaTransform} } \par \\
+				      \subfigure[資料經過LDA轉換的結果 ]{\includegraphics[width=7cm]{pic/lda_dataset_lda_transform.png}\label{fig:LdaDataLdaTransform} } \par &
+				      \subfigure[資料經過PCA轉換的結果]{\includegraphics[width=7cm]{pic/lda_dataset_pca_transform.png}\label{fig:LdaDataPcaTransform} } \par    \\
 			      \end{tabular}
 			      \caption{資料集經過LDA與PCA轉換的結果}
 			      \label{fig:LdaDataPcaLdaTransform}

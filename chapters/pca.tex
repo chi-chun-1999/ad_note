@@ -4,7 +4,8 @@
 \label{sec:introduction}
 
 
-在機器學習中，資料的特徵（維度）數往往會影響模型的訓練效果，特徵太少可能所包含的資訊量太少，在進行模型訓練時，往往無法順利將資料進行正確的分類，所以會僅可能收集與資料集相關的特徵。但當資料的特徵多到一定的程度時，卻會因爲所包含的資訊太多，導致訓練出來的模型過擬合的現象，以至於分類器的效果不增反減，這種現象我們稱爲「curse of dimensionality」，如圖\ref{fig:CurseOfDimesionality}所示。所以在資料特徵過多的情況下，會進行資料降維，盡可能的減少模型發生過擬的現象，增加模型的訓練效果。
+在機器學習中，資料的特徵（維度）數往往會影響模型的訓練效果，特徵太少可能所包含的資訊量太少，在進行模型訓練時，無法順利將資料進行正確的分類，所以會僅可能收集與資料集相關的特徵。
+但當資料的特徵多到一定的程度時，卻會因爲所包含的資訊太多，導致訓練出來的模型過擬合的現象，以至於分類器的效果不增反減，這種現象我們稱爲「curse of dimensionality」，如圖\ref{fig:CurseOfDimesionality}所示。所以在資料特徵過多的情況下，會進行資料降維，盡可能的減少模型發生過擬的現象，增加模型的訓練效果。
 
 Principal Component Analysis（主成份分析），是一種非監督式的資料降維演算法，
 主要是分析數據集中的一系列的主成份，將原本的數據集轉換到一個新的數據集。
@@ -21,7 +22,7 @@ Principal Component Analysis（主成份分析），是一種非監督式的資�
 \end{figure}
 
 \section{相關參數與實例說明}
-為了更簡單理解這個演算法的數學義意，以下舉一個例子說明：
+為了更簡單理解這個演算法的數學意義，以下舉一個例子說明：
 
 \subsection{相關參數}
 \begin{itemize}
@@ -108,10 +109,16 @@ Principal Component Analysis（主成份分析），是一種非監督式的資�
 	      %
 	\item
 		在pca中，就是找出一個投影向量 \(v\) ，使得所有資料經過投影能有最大的變異數，如式\ref{eqn:MaxProjetVector}。
+
 		\begin{equation}
 			\label{eqn:MaxProjetVector}
-			v = arg \underset{||v||_2=1}{max}\  v^tsv			
+			v = arg max\  v^Tsv			
 		\end{equation}
+
+		%%\begin{equation}
+		%%	\label{eqn:MaxProjetVector}
+		%%	v = arg \underset{||v||_2=1}{max}\  v^tsv			
+		%%\end{equation}
 
 
 		\newpage
