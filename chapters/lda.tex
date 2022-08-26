@@ -7,7 +7,8 @@
 
 
 %Linear Discriminant Analysis（LDA），是一種降維演算法，但與前一節提到的PCA有些許的不同，這個演算法屬於一種「監督式」的學習法，所以在進行演算法的運算時，須考慮資料的類別。
-Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演算法，所以在進行演算法運算時，須考慮資料的類別。
+
+線性區別分析（Linear Discriminant Analysis，LDA），屬於一種「監督式」的降維演算法，所以在進行演算法運算時，須考慮資料的類別。
 前一小節提到PCA是希望能在特徵空間中找到一個向量，使得資料的投影點，彼此之間的變異數越大越好。而LDA則是希望能夠找到一個投影向量，使得組內的離散程度越小越好，與組間的離散程度越大越好。
 
 
@@ -50,9 +51,9 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 
 	      %
 	\item
-	      首先，由式\ref{eqn:LdaWithin}計算不同類別的變異數總合 \(\mathbf{S_w}\)。並由式\ref{eqn:LdaWithinTransform}計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。
+	      首先，由式(\ref{eqn:LdaWithin})計算不同類別的變異數總合 \(\mathbf{S_w}\)。並由式(\ref{eqn:LdaWithinTransform})計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。
 
-	      %%由式\ref{eqn:LdaWithinTransform}計算經過「投影後」的組內離散矩陣 \(\mathbf{{S_w}'}\)。其中 \(\mathbf{S_w}\) 為不同類別的變異數總合。
+	      %%由式(\ref{eqn:LdaWithinTransform})計算經過「投影後」的組內離散矩陣 \(\mathbf{{S_w}'}\)。其中 \(\mathbf{S_w}\) 為不同類別的變異數總合。
 
 	      \begin{equation}
 		      \label{eqn:LdaWithin}
@@ -70,7 +71,7 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 
 
 	\item
-		接著由式 \ref{eqn:BetweenClassScatter}計算組間離散程度 \(\mathbf{S_b}\)。並由式 \ref{eqn:LdaTransformClassScatter}計算「投影後」的組間離散程度 \(\mathbf{{S_b}'}\) 。
+		接著由式 (\ref{eqn:BetweenClassScatter})計算組間離散程度 \(\mathbf{S_b}\)。並由式 (\ref{eqn:LdaTransformClassScatter})計算「投影後」的組間離散程度 \(\mathbf{{S_b}'}\) 。
 
 	      \begin{equation}
 		      \label{eqn:BetweenClassScatter}
@@ -96,7 +97,7 @@ Linear Discriminant Analysis（LDA），屬於一種「監督式」的降維演�
 	      \end{figure}
 
 	\item
-	      根據前一小節提到的，希望投影過後「組內離散程度越小越好，組間離散程度越大越好」，最後會希望找到一個 \(w\)，使得\(\frac{\mathbf{S_b}}{\mathbf{S_w}}\) 越大越好，如式\ref{eqn:FindMaximun}。
+	      根據前一小節提到的，希望投影過後「組內離散程度越小越好，組間離散程度越大越好」，最後會希望找到一個 \(w\)，使得\(\frac{\mathbf{S_b}}{\mathbf{S_w}}\) 越大越好，如式(\ref{eqn:FindMaximun})。
 
 	      \begin{equation}
 		      \label{eqn:FindMaximun}

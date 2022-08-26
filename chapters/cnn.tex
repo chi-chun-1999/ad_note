@@ -25,7 +25,7 @@
 %\end{itemize}
 
 
-圖\ref{fig:Convolution}與圖\ref{fig:ConvolutionFinally}，第一格的計算如式\ref{eqn:ConvolutionCaculate}結果為1。一次往右一格以此類推進行計算，到邊界時往下一列從新的一行開始計算，最後得出卷積(Convolution)結果。
+圖\ref{fig:Convolution}與圖\ref{fig:ConvolutionFinally}，第一格的計算如式(\ref{eqn:ConvolutionCaculate})結果為1。一次往右一格以此類推進行計算，到邊界時往下一列從新的一行開始計算，最後得出卷積(Convolution)結果。
 
 \begin{equation}
 	\label{eqn:ConvolutionCaculate}
@@ -150,7 +150,7 @@
 將所有特徵圖變為一維度，並組合在一起來進行輸出分類，簡單的來說就是一個分類器，把我們經過數個卷積、池化後的結果進行分類。
 把我們經過數個卷積、池化後的結果進行分類。通 常 在 全 連 接 層 與 輸 出 層 間 會 使 用 Softmax(歸一化指數函式)函數來輸出機率，使所有類別的機率和為1。
 它能將一個含任意實數的K維向量「壓縮」到另一個K維實向量 中，使得每一個元素的範圍都在(0,1)之間，並且所有元素的和為1。
-Softmax公式\ref{eqn:Softmax}
+Softmax公式(\ref{eqn:Softmax})
 \begin{equation}
 	\label{eqn:Softmax}
 	\sigma(z)_j=\frac{e^{z_j}}{\sum_{k=1}^{K}e^{zk}} \ \ \ \ \ \ \ \ \ for\ 1,....,K
@@ -171,7 +171,7 @@ model.add（激活函數）
 	\item
 	      padding方法:有VALID padding和SAME padding
 	\item
-	      激活函數使用ReLU函數，式\ref{eqn:ReLU}
+	      激活函數使用ReLU函數，式(\ref{eqn:ReLU})
 	      \begin{equation}
 		      \label{eqn:ReLU}
 		      Relu(x)=
