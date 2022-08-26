@@ -1,11 +1,10 @@
-\chapter{Pearson 相關係數}
+\chapter{Pearson product-moment correlation coefficient}
 \label{chapter:intro}
-\section{Pearson 相關係數}
-Pearson 相關係數時常在統計學中用於度量兩變量之間的線性相關程度， 該係數的值介於[−1,1]，越接近 1 代表相關性越高，存在兩變量x=[x1,x2,……xi]和y=[y1,y2,……yi] ，其相關性$r_{xy}$定義為。
+皮爾森積動差相關係數(Pearson product-moment correlation coefficient，PPMCC)時常在統計學中用於度量兩變量之間的線性相關程度， 該係數的值介於[−1,1]，越接近 1 代表相關性越高，存在兩變量x=[$x_1,x_2,……x_i$]和y=[$y_1$,$y_2$,……$y_i$] ，t為總數量，其相關性$r_{xy}$定義為。
 
 \begin{equation}
-\label{equ:Pearson }
-    r_{xy}=\frac{t\ast \sum_{k=1}^{t}x_ky_k+\sum_{k=1}^{t}x_k\sum_{k=1}^{t}y_k}{\sqrt{t\ast \sum_{k=1}^{t}x_k^2-(\sum_{k=1}^{t}x_k)^2}\ast\sqrt{t\ast \sum_{k=1}^{t}y_k^2-(\sum_{k=1}^{t}y_k)^2}}
+\label{eqn:Pearson }
+    r_{xy}=\frac{t\times\sum_{k=1}^{t}x_ky_k+\sum_{k=1}^{t}x_k\sum_{k=1}^{t}y_k}{\sqrt{t\times \sum_{k=1}^{t}x_k^2-(\sum_{k=1}^{t}x_k)^2}\times\sqrt{t\times\sum_{k=1}^{t}y_k^2-(\sum_{k=1}^{t}y_k)^2}}
 \end{equation}
-其中rxy 範圍1跟-1之間，越靠近1正相關性越大，越靠近-1負相關性越大，越靠近零相關性越小。
+其中$r_{xy}$ 範圍1跟-1之間，越靠近1正相關性越大，越靠近-1負相關性越大，越靠近零相關性越小。
     

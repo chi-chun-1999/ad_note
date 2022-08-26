@@ -14,7 +14,6 @@
 % clean.bat 為清除、複製檔案於 C:\xtemp 使用。
 % IEEEtran.sty 為文獻格式必須檔。
 % *.bib 為文獻檔
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[12pt,oneside,openany,a4paper,draft=FALSE]{book}
 
@@ -42,7 +41,7 @@
 %\usepackage{breakurl}
 
 %註腳不縮排
-\usepackage[hang,flushmargin]{footmisc}
+\usepackage[bottom,hang,flushmargin]{footmisc}
 
 % 文獻套件
 \usepackage[square,numbers]{natbib} %中英文文獻
@@ -112,9 +111,6 @@
 \mainmatter % 阿拉伯文頁碼
 \fontsize{12}{21pt}\selectfont
 
-%%  第一章
-%\input{chapters/01_introduction}
-
 
 % 	PCA
 \input{./chapters/pca.tex}
@@ -134,20 +130,24 @@
 %% CNN
 \input{./chapters/cnn.tex}
 
+
 %%  LVQ
 \input{./chapters/lvq.tex}
 
 %%RBF
 \input{./chapters/rbf.tex}
 
+%% LSTM
+\input{./chapters/lstm.tex}
+
 %%SVM
 \input{./chapters/SVM.tex}
 %%Biomarker
-\input{./chapters/Biomarker.tex}
+%\input{./chapters/Biomarker.tex}
 %%ReminiscenceTherapy
-\input{./chapters/ReminiscenceTherapy.tex}
+%\input{./chapters/ReminiscenceTherapy.tex}
 %%ADEvaluate
-\input{./chapters/ADEvaluate.tex}
+%\input{./chapters/ADEvaluate.tex}
 
 %%  文獻
 %\bibliographystyle{IEEEtran}
