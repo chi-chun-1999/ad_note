@@ -26,15 +26,15 @@
 	\item
 	      \(\mathbf{S_b}\) 為組間離散程度矩陣，表示兩兩類別之間群心的變異量的總合。\(\mathbf{{S_b}'}\) 為投影後的組間離散程度矩陣。
 	\item
-	      \(u\) ：所有資料均值。
+	      \(\mathbf{u}\) ：所有資料均值。
 	\item
-	      \(u_i\) ：第i類資料均值。
+	      \(\mathbf{u_i}\) ：第i類資料均值。
 	\item
-	      \(x_i\) ：第i筆資料。
+	      \(\mathbf{x_i}\) ：第i筆資料。
 	\item
 	      \(n_i\) ：屬於i類的資料個數。
 	\item
-	      \(w\) ：投影軸。
+	      \(\mathbf{w}\) ：投影軸。
 \end{itemize}
 
 \subsection{實例說明}
@@ -57,15 +57,15 @@
 
 	      \begin{equation}
 		      \label{eqn:LdaWithin}
-		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
+		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  \mathbf{(x_k - u_i)(x_k-u_i)^T}
 	      \end{equation}
 
 	      \begin{equation}
 		      \label{eqn:LdaWithinTransform}
 		      \begin{aligned}
-			      \mathbf{{S_w}'} & =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (w^Tx_k - w^Tu_i)(w^Tx_k-w^Tu_i)^T
-			      \\& =w^T(\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T)w
-			      \\& =w^TS_ww
+			      \mathbf{{S_w}'} & =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  \mathbf{(w^Tx_k - w^Tu_i)(w^Tx_k-w^Tu_i)^T}
+			      \\& =\mathbf{w^T}(\sum_{i=1}^{c} \sum^{}_{x_k\in class} \mathbf{ (x_k - u_i)(x_k-u_i)^T)w}
+			      \\& =\mathbf{w^TS_ww}
 		      \end{aligned}
 	      \end{equation}
 
@@ -75,15 +75,15 @@
 
 	      \begin{equation}
 		      \label{eqn:BetweenClassScatter}
-		      \mathbf{S_b} =\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T
+		      \mathbf{S_b} =\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(u_i - u_j)(u_i - u_j)^T}
 	      \end{equation}
 
 	      \begin{equation}
 		      \label{eqn:LdaTransformClassScatter}
 		      \begin{aligned}
-			      \\&\mathbf{{S_b}'} =\sum_{i=1}^{c}\sum_{i \neq j } (w^Tu_i - w^Tu_j)(w^Tu_i - w^Tu_j)^T
-			      \\& =w^T(\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T)w
-			      \\& =w^TS_bw
+			      \\&\mathbf{{S_b}'} =\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(w^Tu_i - w^Tu_j)(w^Tu_i - w^Tu_j)^T}
+			      \\& =\mathbf{w^T}(\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(u_i - u_j)(u_i - u_j)^T)w}
+			      \\& =\mathbf{w^TS_bw}
 		      \end{aligned}
 	      \end{equation}
 
