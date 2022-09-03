@@ -139,7 +139,19 @@
 	      \end{equation}
 
 
-	      \newpage
+	\item
+
+		透過拉格朗日乘子，並求導 \(\mathbf{S}\)的特徵向量，即為 \(\mathbf{v}\) 。
+	      \begin{gather}
+		      \label{eqn:PCALagrange}
+			  L(\mathbf{v},\lambda) = \mathbf{v^TSv}-\lambda(\mathbf{v^Tv}-1)
+\\
+		      \label{eqn:PCALagrange}
+			  \frac{\partial L(\mathbf{v},\lambda)}{\partial\mathbf{v}}=2\mathbf{Sv}-2\lambda\mathbf{Sv} \Rightarrow \mathbf{Sv} =\lambda\mathbf{v}
+	      \end{gather}
+
+	\newpage
+
 	\item
 	      經過PCA的計算之後，我們可以得到比較有代表性的兩個特徵成份，較長的為PC1，較短的為PC2，如圖\ref{fig:Pc1AndPc2}所示，而變異量的值分別為0.7625與0.0184 。
 
