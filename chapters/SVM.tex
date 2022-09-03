@@ -1,39 +1,33 @@
 \chapter{Support Vector Machine }
 \label{chapter:SVM}
 \section{簡介}
-SVM是一種分類器，除了可以處理線性分類問題如圖\ref{fig:LinearSeparable}，同時也能解決非線性分割的問題如圖\ref{fig:LinearUnseparable}。
-將低維度線性不可分的樣本映射到高維度，使 SVM 能在高維空間中建構超平面如圖\ref{fig:Hyperspace}所示，進而將原始數據進行分類，找到一個超平面將這些樣本做有效的切割，而這個超平面兩邊的樣本要盡可能地遠離這個超平面，為了將來多出新的資料時也能有效，而為了能針對不同類型的數據有個別的分類效果，
-通常會選擇適當的核函式(kernel function)來使用，SVM 的主要如下公式：
-\begin{equation}
-	\label{eqn:SVM}
-	_{w,\delta_i}^{min}\frac{1}{2}W^TW+C\sum_{i=1}^{n}\delta_i
-\end{equation}
-其中 w 為超平面的法向量，$\delta_i$超平面的容忍邊界參數，值越大容忍範圍越大，
-C 為調整容忍邊界參數的權重。
 
+SVM屬於一種監督式學習演算法，主要的目的是在特徵空間中，盡可能找到一個超平面使其能夠以最大間格把兩個類別區隔開來。
+如圖\ref{fig:SVMBestSeparte}所示， \(H_1\)與\(H_2\)都能將兩個類別分離，但 \(H_1\)與最近的資料點間隔較小，如果資料集中有其他雜訊點， \(H_1\)很容易將其分類錯誤；而 \(H_2\)則能以較大的間隔區隔兩個不同類別，因此當資料集中有其他雜訊點，還是能須利將其分類。因此\(H_2\) 屬於比較好的分類器。
 
+SVM除了可以處理線性分類問題如圖\ref{fig:SVMBestSeparte}，同時也能解決非線性分割的問題如圖\ref{fig:LinearUnseparable}。利用核函數使低維度線性不可分的樣本映射到高維度，使得原本非線性可分的資料，變成可線性分割的資料，使SVM能在高維空間中建構超平面如圖\ref{fig:Hyperspace}所示，進而將原始數據進行分類。
+%%\begin{equation}
+%%	\label{eqn:SVM}
+%%	_{w,\delta_i}^{min}\frac{1}{2}W^TW+C\sum_{i=1}^{n}\delta_i
+%%\end{equation}
+%%其中 w 為超平面的法向量，$\delta_i$超平面的容忍邊界參數，值越大容忍範圍越大，C 為調整容忍邊界參數的權重。
+%%
 
-
-%%\begin{figure}[H]
-%%	\centerline{\includegraphics[height=5cm]{pic/SVM ar.PNG}}
-%%	\caption{SVM架構圖}
-%%	\label{fig:SVMArchitecture}
-%%\end{figure}
 \begin{figure}[H]
-	\centerline{\includegraphics[height=5cm]{pic/SVML.png}}
-	\caption{SVM示意圖}
-	\label{fig:SVM}
+	\centerline{\includegraphics[height=5cm]{./pic/PnmhVqej.png}}
+	\caption{資料集中不同的分割線}
+	\label{fig:SVMBestSeparte}
 \end{figure}
-\begin{figure}[H]
-	\centerline{\includegraphics[height=5cm]{pic/linear.PNG}}
-	\caption{線性可分示意圖}
-	\label{fig:LinearSeparable}
-\end{figure}
+
 \begin{figure}[H]
 	\centerline{\includegraphics[height=5cm]{pic/unlinear.PNG}}
 	\caption{線性不可分示意圖}
 	\label{fig:LinearUnseparable}
 \end{figure}
+
+\section{演算法參數定義與流程}
+
+
 
 \begin{figure}[H]
 	\centerline{\includegraphics[height=5cm]{pic/over space.PNG}}
@@ -43,6 +37,7 @@ C 為調整容忍邊界參數的權重。
 \label{sec:background}
 
 \section{核函數(kernel function)}
+
 \begin{enumerate}
 	\item
 	      Linear Kernel

@@ -5,7 +5,7 @@
 %%圖\ref{fig:LvqNetwork}爲LVQ的網路架構圖。SOM是一個分群的演算法，如果將它的概念轉成監督式學習，就是LVQ演算法的由來。這個演算法可用於分類的應用，且具有簡單的架構。
 
 學習向量量化(Learning Vector Quantization，簡稱爲LVQ)，可以將其視爲一種人工神經網路的特例。
-從圖\ref{fig:LvqNetwork} LVQ的網路架構圖中可以發現，這個網路僅具有輸入與輸出兩層，所以複雜度較低的神經網路，並且是一個監督式學習的分類演算法。
+從圖\ref{fig:LvqNetwork} LVQ的網路架構圖中可以發現，這個網路僅具有輸入與輸出兩層，所以為複雜度較低的神經網路，並且是一個監督式學習的分類演算法。
 
 \begin{figure}[h]
 	\centering
@@ -26,7 +26,7 @@ Vector Quatization其主要目的是將原資料分割k個區域，並在這些�
 LVQ基於這個演算法的概念進行，藉由不斷的更新代表點的位置，找出最佳的codebook。
 
 
-從圖\ref{fig:DataAfterVq}，可以看到原資料被分割成3個區域，以及3個紅色方點，而紅色方點就是整個分割區域中的代表點，也是LVQ中的weight vetcor。
+從圖\ref{fig:DataAfterVq}，可以看到原資料被分割成3個區域，以及3個紅色方點，而紅色方點就是整個分割區域中的代表點，也是LVQ中的權重向量。
 
 
 \begin{figure}[h]
@@ -70,7 +70,7 @@ LVQ基於這個演算法的概念進行，藉由不斷的更新代表點的位�
 	      %
 	\item
 	      \(D(j)\)爲每筆資料與代表點的距離。
-	      $$D(j)=||\mathbf{x}-\mathbf{w_j}||_2 = \sqrt{(x_1-w_{1j})^2+(x_2-w_{2j})^2+...+(x_n-w_{nj})^2} $$
+	      $$D(j)=||\mathbf{x}-\mathbf{w_j}||_2 = \sqrt{(x_1-w_{1j})^2+(x_2-w_{2j})^2+...+(x_n-w_{Rj})^2} $$
 
 
 	\item
@@ -78,7 +78,7 @@ LVQ基於這個演算法的概念進行，藉由不斷的更新代表點的位�
 		\(\mathbf{C}\) 為競爭層的輸出向量。
 
 	\item
-	      輸出層權重，\(\mathbf{W^2} \)為一個 \(S^2 \times S^1\)的矩陣。
+	      輸出層權重，\(\mathbf{W^2} \)為一個 \(S^2 \times S^1\)的矩陣。這裡為了方便說明，將 \(\mathbf{W^2}\) 設定為一個 \(S^1 \times S^1\) 的單位矩陣，也因此競爭層的輸出為網路層的輸出 \(\mathbf{C} = \mathbf{y}\)。
 
 	\item
 		\(\mathbf{y}\) 為網路的輸出向量。

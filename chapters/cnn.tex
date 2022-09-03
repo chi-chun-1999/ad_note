@@ -125,7 +125,7 @@
 \end{comment}
 
 \subsection{池化層(pooling Layer)}
-在這一層中，將對影像進行欠取樣(Undersampling)，使影像大小在不改變特徵的情況下減少像素，進而達到減少運算的效果，上述方法稱為池化。
+在這一層中，對影像進行欠取樣(Undersampling)，使影像大小在不改變特徵的情況下減少像素，進而達到減少運算的效果，上述方法稱為池化。
 
 池化是先在圖片上選取不同窗口(window)，依據不同方法在窗口範圍中選擇特徵值。若使用\(2 \times 2\)的窗口，原圖經過池化以後，其所包含的像素數量會降為原本的四分之一。如圖\ref{fig:MaxPooling}， \(6 \times6\) 的影像經過\(2 \times 2\)的窗口池化後，將變為\(3 \times 3\)的特徵圖，但因為池化後的影像包含了原圖中各範圍的特徵值，並保留每個範圍內各個特徵的相符程度，因此池化後的資訊更專注於影像中是否存在相符的特徵，而非影像中哪裡存在這些特徵。
 這能幫助 CNN 判斷圖片中是否包含某項特徵，而不必分心於特徵位置。
@@ -186,13 +186,19 @@
 	\label{fig:FullyConnetedLayer}
 \end{figure}
 
-\section{訓練過程與參數設定}
+\section{訓練過程}
+
+\begin{comment}
 \subsection{演算法參數}
-model.add=(Convolution2D(output size，Kernal Size，padding方法，input shape =(img channels，img rows，img cols))
-model.add(激活函數)
-\begin{enumerate}
+\begin{lstlisting}[language={python}]
+model.add=(Convolution2D(output_size,kernal_size,padding_method,input_shape =(img_channels,img_rows,img_cols))
+model.add('activation_function')
+
+\end{lstlisting}
+
+\begin{itemize}
 	\item
-	      輸入圖片:img channels:圖片類別，img rows,img cols:圖片的寬高
+	      img，輸入圖片。 channels，圖片通道。img rows,img cols:圖片的長寬。
 	\item
 	      設定卷積核大小Kernal Size(6，6)
 	\item
@@ -210,15 +216,18 @@ model.add(激活函數)
 			      0 \ \ \ \ \ \ if\ x<0
 		      \end{matrix}\right.
 	      \end{equation}
-\end{enumerate}
+\end{itemize}
 CNN演算法如圖\ref{fig:Keras}所示
 \begin{figure}[H]
 	\centerline{\includegraphics[height=15cm]{pic/Keras.jpg}}
 	\caption{CNN演算法圖}
 	\label{fig:Keras}
 \end{figure}
+	
+\end{comment}
 
-\subsection{訓練過程}
+卷積神經網路的訓練流程如下，圖\ref{fig:CNNTrainningFlowChart}為其訓練流程圖。
+
 \begin{enumerate}
 	\item
 	      初始化網絡權重。
@@ -232,12 +241,11 @@ CNN演算法如圖\ref{fig:Keras}所示
 	      根據求得誤差進行權重更新，用更新的權重進行回到第二步。
 \end{enumerate}
 \begin{figure}[H]
-	\centerline{\includegraphics[height=15cm]{pic/CNNp.PNG}}
+	\centerline{\includegraphics[height=14cm]{./pic/iigz3LNt.png}}
 	\caption{CNN訓練流程圖}
 	\label{fig:CNNTrainningFlowChart}
 \end{figure}
 
-\newpage
 \section{結論}
 卷積神經網路利用卷積層進行特徵提取，透過池化層降低維度的同時保留影像特徵，最後經由全連接層進行影像分類的運算。
 除此之外，因為卷積神經網路有局部權重共享的特殊性質，能夠降低網路的複雜性，使其在圖形辨識方面有獨特的優勢。

@@ -39,16 +39,16 @@ LSTM的Forget Gate，會決定丟棄多少程度的Cell State資訊，輸出的�
 
 \begin{itemize}
 	\item 
-		\(x_t\)，表示第t個輸入向量，為一個具有\(n\times 1\)向量，n代表特徵數，在圖 \ref{fig:ForgetGateCalculate}中\(n = 3\)。
+		\(\mathbf{x_t}\)，表示第t個輸入向量，為一個\(n\times 1\)向量，n代表特徵數，在圖 \ref{fig:ForgetGateCalculate}中\(n = 3\)。
 
 	\item 
-		\(h_{t-1}\)，為前一層的輸出結果，是一個 \(k \times 1\) 向量，\(k\)由自行決定，在圖 \ref{fig:ForgetGateCalculate}中\(k = 4\) 。
+		\(\mathbf{h_{t-1}}\)，為前一層的輸出結果，是一個 \(k \times 1\) 向量，\(k\)由自行決定，在圖 \ref{fig:ForgetGateCalculate}中\(k = 4\) 。
 
 	\item 
-		\(W_f\)，為forget gate的權重，是一個 \(k \times (k+n)\)的矩陣。
+		\(\mathbf{W_f}\)，為forget gate的權重，是一個 \(k \times (k+n)\)的矩陣。
 
 	\item 
-		\(b_f\)，為forget gate的偏移值，是一個 \(k \times 1\)的向量。
+		\(\mathbf{b_f}\)，為forget gate的偏移值，是一個 \(k \times 1\)的向量。
 \end{itemize}
 
 
@@ -69,28 +69,28 @@ LSTM的Forget Gate，會決定丟棄多少程度的Cell State資訊，輸出的�
 
 \begin{equation}
 	\label{eqn:ForgetGateCalculate}
-	f_t = \sigma(W_f\cdot[h_{t-1},x_t]+b_f)
+	\mathbf{f_t} = \sigma(\mathbf{W_f\cdot[h_{t-1},x_t]+b_f})
 \end{equation}
 
 
 \subsection{Input Gate}
 
-在這個階段中，會決定新的訊息是否儲存Cell State的中。其中 Input Gate 會決定新的資訊更新的程度，而 \(C_t'\)會決定要被更新的值。以下為相關的參數說明：
+在這個階段中，會決定新的訊息是否儲存Cell State的中。其中 Input Gate 會決定新的資訊更新的程度，而 \(\mathbf{C_t'}\)會決定要被更新的值。以下為相關的參數說明：
 
 
 \begin{itemize}
 
 	\item 
-		\(W_i\)，為Input gate的權重，是一個 \(k \times (k+n)\)的矩陣。
+		\(\mathbf{W_i}\)，為Input gate的權重，是一個 \(k \times (k+n)\)的矩陣。
 
 	\item 
-		\(b_i\)，為Input gate的偏移值，是一個 \(k \times 1\)的向量。
+		\(\mathbf{b_i}\)，為Input gate的偏移值，是一個 \(k \times 1\)的向量。
 
 	\item 
-		\(W_{c'}\)，為決定\(C_t'\)的權重，是一個 \(k \times (k+n)\)的矩陣。
+		\(\mathbf{W_{c'}}\)，為決定\(\mathbf{C_t'}\)的權重，是一個 \(k \times (k+n)\)的矩陣。
 
 	\item 
-		\(b_{c'}\)，為決定\(C_t'\)的偏移值，是一個 \(k \times 1\)的向量。
+		\(\mathbf{b_{c'}}\)，為決定\(\mathbf{C_t'}\)的偏移值，是一個 \(k \times 1\)的向量。
 
 \end{itemize}
 
@@ -112,7 +112,7 @@ LSTM的Forget Gate，會決定丟棄多少程度的Cell State資訊，輸出的�
 
 \begin{equation}
 	\label{eqn:InputGateCalculate}
-	i_t = \sigma(W_i\cdot[h_{t-1},x_t]+b_i)
+	\mathbf{i_t} = \sigma(\mathbf{W_i\cdot[h_{t-1},x_t]+b_i})
 \end{equation}
 
 \begin{figure}[H]
@@ -125,12 +125,12 @@ LSTM的Forget Gate，會決定丟棄多少程度的Cell State資訊，輸出的�
 
 \begin{equation}
 	\label{eqn:InputCalculate}
-	C_t' = tanh(W_i\cdot[h_{t-1},x_t]+b_i)
+	\mathbf{C_t'} = tanh(\mathbf{W_i\cdot[h_{t-1},x_t]+b_i})
 \end{equation}
 
 \subsection{Cell State的更新}
 
-Cell State的更新會根據Forget Gate、Input Gate與 \(C_t'\)，決定過去的資訊要被更新，或是被丟棄，進而產生新的訊息。從圖\ref{fig:CellStateUpdateCaculate}可以觀察到，會將 \(C_{t-1}\)與 \(f_t\)行內積，決定舊的資訊要保留多少；然後再將\(C_t'\)與 \(i_t\)進行內積，決定要更新的資訊，最後相加得到新的\(C_t\)。
+Cell State的更新會根據Forget Gate、Input Gate與 \(\mathbf{C_t'}\)，決定過去的資訊要被更新，或是被丟棄，進而產生新的訊息。從圖\ref{fig:CellStateUpdateCaculate}可以觀察到，會將 \(\mathbf{C_{t-1}}\)與 \(\mathbf{f_t}\)進行內積，決定舊的資訊要保留多少；然後再將\(\mathbf{C_t'}\)與 \(\mathbf{i_t}\)進行內積，決定要更新的資訊，最後相加得到新的\(\mathbf{C_t}\)。
 
 \begin{figure}[H]
 	\centering
@@ -149,22 +149,22 @@ Cell State的更新會根據Forget Gate、Input Gate與 \(C_t'\)，決定過去�
 
 \begin{equation}
 	\label{eqn:InputCalculate}
-	C_t' = c_t'\cdot i_t + c_{t-1}\cdot f_t 
+	\mathbf{C_t' = c_t'\cdot i_t + c_{t-1}\cdot f_t} 
 \end{equation}
 
 
 
 \subsection{Output Gate}
 
-Output Gate會先決定更新後的Cell State輸出程度 \(o_t\) ，接著\(C_t\)會進行tanh函數運算，其輸出值會介於-1到1之間，最後與\(o_t\)內積得到新的輸出結果 \(h_t\) 。
+Output Gate會先決定更新後的Cell State輸出程度 \(\mathbf{o_t}\) ，接著\(\mathbf{C_t}\)會進行tanh函數運算，其輸出值會介於-1到1之間，最後與\(\mathbf{o_t}\)內積得到新的輸出結果 \(\mathbf{h_t}\) 。
 
 \begin{itemize}
 
 	\item 
-		\(W_o\)，為Output gate的權重，是一個 \(k \times (k+n)\)的矩陣。
+		\(\mathbf{W_o}\)，為Output gate的權重，是一個 \(k \times (k+n)\)的矩陣。
 
 	\item 
-		\(b_o\)，為Output gate的偏移值，是一個 \(k \times 1\)的向量。
+		\(\mathbf{b_o}\)，為Output gate的偏移值，是一個 \(k \times 1\)的向量。
 
 \end{itemize}
 
@@ -185,7 +185,7 @@ Output Gate會先決定更新後的Cell State輸出程度 \(o_t\) ，接著\(C_t
 
 \begin{equation}
 	\label{eqn:OutputGateCalculate}
-	o_t = \sigma(W_o\cdot[h_{t-1},x_t]+b_o)
+	\mathbf{o_t = \sigma(W_o\cdot[h_{t-1},x_t]+b_o)}
 \end{equation}
 
 \begin{figure}[H]
@@ -206,7 +206,7 @@ Output Gate會先決定更新後的Cell State輸出程度 \(o_t\) ，接著\(C_t
 
 \begin{equation}
 	\label{eqn:InputCalculate}
-	h_t = o_t \cdot tanh(c_t) 
+	\mathbf{h_t} = \mathbf{o_t} \cdot tanh(\mathbf{c_t}) 
 \end{equation}
 
 
