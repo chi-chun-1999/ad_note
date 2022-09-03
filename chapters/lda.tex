@@ -8,33 +8,36 @@
 
 %Linear Discriminant Analysis（LDA），是一種降維演算法，但與前一節提到的PCA有些許的不同，這個演算法屬於一種「監督式」的學習法，所以在進行演算法的運算時，須考慮資料的類別。
 
-線性區別分析（Linear Discriminant Analysis，LDA），屬於一種「監督式」的降維演算法，所以在進行演算法運算時，須考慮資料的類別。
-前一小節提到PCA是希望能在特徵空間中找到一個向量，使得資料的投影點，彼此之間的變異數越大越好。而LDA則是希望能夠找到一個投影向量，使得組內的離散程度越小越好，與組間的離散程度越大越好。
+線性區別分析（Linear Discriminant Analysis，LDA），屬於一種「監督式」的降維演算法，因此在進行演算法運算時，須考慮資料的類別。
+前一節提到PCA是希望能在特徵空間中找到一個向量，使得資料的投影點，彼此之間的變異數越大越好。而LDA則是希望能夠找到一個投影向量，使得組內的離散程度越小越好，組間的離散程度越大越好。
 
 
 
 
 \section{相關參數與實例說明}
-為了更簡單理解這個演算法的數學意義，以下舉一個例子說明：
-
+以下舉例說明了這個演算法的數學意義：
 
 \subsection{相關參數}
 
 \begin{itemize}
 	\item
-	      \(\mathbf{S_w}\) 為組內離散程度矩陣，不同類別中的資料變異量總合。而 \(\mathbf{{S_w}'}\)是經過投影後的組內離散程度矩陣。
+	      \(\mathbf{x_k}\) ，第k筆資料點。
 	\item
-	      \(\mathbf{S_b}\) 為組間離散程度矩陣，表示兩兩類別之間群心的變異量的總合。\(\mathbf{{S_b}'}\) 為投影後的組間離散程度矩陣。
+	      \(\mathbf{u}\)，所有資料均值。\(\mathbf{u_i}\) ，第i類資料均值。
 	\item
-	      \(u\) ：所有資料均值。
+		\(z_k\)，為第k筆資料點於投影向量上的偏移。
 	\item
-	      \(u_i\) ：第i類資料均值。
+		\(m_i\)，表示屬於i類資料點投影後的均值。
+
 	\item
-	      \(x_i\) ：第i筆資料。
+	      \(\mathbf{S_w}\)，為組內離散程度矩陣，不同類別中的資料變異量總合。而 \(\mathbf{{S_w}'}\)是經過投影後的組內離散程度矩陣。
 	\item
-	      \(n_i\) ：屬於i類的資料個數。
+	      \(\mathbf{S_b}\)，為組間離散程度矩陣，表示兩類別之間群心的變異量的總合。\(\mathbf{{S_b}'}\) 為投影後的組間離散程度矩陣。
+	      
 	\item
-	      \(w\) ：投影軸。
+	      \(n_i\) ，屬於i類的資料個數。
+	\item
+	      \(\mathbf{w}\) ，投影向量，且長度為1的單位向量。
 \end{itemize}
 
 \subsection{實例說明}
@@ -48,24 +51,49 @@
 		      \label{fig:LdaDemostrate}
 	      \end{figure}
 
+	\item
+		\(z_1\) 為 \(\mathbf{x_1}\) 於 \(\mathbf{w}\) 上的偏移或是坐標，經過投影的轉換，原資料將從二維向量降到一維。式(\ref{eqn:LdaProjectTheta})與(\ref{eqn:LdaProjectData})為其計算公式，圖 \ref{fig:LdaVectorProject}為相關示意圖。
+		      \begin{equation}
+		      \label{eqn:LdaProjectTheta}
+				  ||\mathbf{w}|| = 1, \ \ cos \theta  = \frac{\mathbf{w}^T\mathbf{x_1}}{||\mathbf{w}|| \cdot ||\mathbf{x_1}||}= \frac{\mathbf{w}^T\mathbf{x_1}}{||\mathbf{x_1}||}
+		      \end{equation}
 
-	      %
+		      \begin{equation}
+		      \label{eqn:LdaProjectData}
+			  z_1 =  ||\mathbf{x}|| \cdot cos \theta = \mathbf{w}^T\mathbf{x}
+		      \end{equation}
+
+	      \begin{figure}[H]
+		      \begin{center}
+			      \includegraphics[width=7cm]{./pic/24yBU055.png}
+			      \caption{部分資料集投影於向量上示意圖}
+			      \label{fig:LdaVectorProject}
+		      \end{center}
+	      \end{figure}
+
+
 	\item
 	      首先，由式(\ref{eqn:LdaWithin})計算不同類別的變異數總合 \(\mathbf{S_w}\)。並由式(\ref{eqn:LdaWithinTransform})計算經過投影後的組內離散矩陣 \(\mathbf{{S_w}'}\)。
 
 	      %%由式(\ref{eqn:LdaWithinTransform})計算經過「投影後」的組內離散矩陣 \(\mathbf{{S_w}'}\)。其中 \(\mathbf{S_w}\) 為不同類別的變異數總合。
 
 	      \begin{equation}
+		      \label{eqn:LdaAvg}
+			  m_i = \frac{1}{n_i}\sum^{n_i}_{z_k \in class }z_i, \ \mathbf{u_i} = \frac{1}{n_i}\sum_{x_k \in class}^{n_i} \mathbf{x_k}
+	      \end{equation}
+
+	      \begin{equation}
 		      \label{eqn:LdaWithin}
-		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T
+		      \mathbf{S_w}  =\sum_{i=1}^{c} \sum^{n_i}_{x_k\in class}  \mathbf{(x_k - u_i)(x_k-u_i)^T}
 	      \end{equation}
 
 	      \begin{equation}
 		      \label{eqn:LdaWithinTransform}
 		      \begin{aligned}
-			      \mathbf{{S_w}'} & =\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (w^Tx_k - w^Tu_i)(w^Tx_k-w^Tu_i)^T
-			      \\& =w^T(\sum_{i=1}^{c} \sum^{}_{x_k\in class}  (x_k - u_i)(x_k-u_i)^T)w
-			      \\& =w^TS_ww
+			      \mathbf{{S_w}'} & =\sum_{i=1}^{c} \sum^{n_i}_{z_k\in class}  (z_k-m_i)(z_k-m_i)^T
+				  \\& =\sum_{i=1}^{c} \sum^{n_i}_{x_k\in class}  \mathbf{(w^Tx_k - w^Tu_i)(w^Tx_k-w^Tu_i)^T}
+			      \\& =\mathbf{w^T}(\sum_{i=1}^{c} \sum^{n_i}_{x_k\in class} \mathbf{ (x_k - u_i)(x_k-u_i)^T)w}
+			      \\& =\mathbf{w^TS_ww}
 		      \end{aligned}
 	      \end{equation}
 
@@ -75,15 +103,15 @@
 
 	      \begin{equation}
 		      \label{eqn:BetweenClassScatter}
-		      \mathbf{S_b} =\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T
+		      \mathbf{S_b} =\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(u_i - u_j)(u_i - u_j)^T}
 	      \end{equation}
 
 	      \begin{equation}
 		      \label{eqn:LdaTransformClassScatter}
 		      \begin{aligned}
-			      \\&\mathbf{{S_b}'} =\sum_{i=1}^{c}\sum_{i \neq j } (w^Tu_i - w^Tu_j)(w^Tu_i - w^Tu_j)^T
-			      \\& =w^T(\sum_{i=1}^{c}\sum_{i \neq j } (u_i - u_j)(u_i - u_j)^T)w
-			      \\& =w^TS_bw
+			      \\&\mathbf{{S_b}'} =\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(w^Tu_i - w^Tu_j)(w^Tu_i - w^Tu_j)^T}
+			      \\& =\mathbf{w^T}(\sum_{i=1}^{c}\sum_{i \neq j } \mathbf{(u_i - u_j)(u_i - u_j)^T)w}
+			      \\& =\mathbf{w^TS_bw}
 		      \end{aligned}
 	      \end{equation}
 
@@ -91,7 +119,7 @@
 
 	      \begin{figure}[H]
 		      \centering
-		      \includegraphics[height=5cm]{./pic/0JcYc52J.png}
+		      \includegraphics[height=5cm]{./pic/bugfxgEn.png}
 		      \caption{部分資料經過投影的結果}
 		      \label{fig:LdaTransform}
 	      \end{figure}
@@ -101,9 +129,19 @@
 
 	      \begin{equation}
 		      \label{eqn:FindMaximun}
-		      \underset{w}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} =\underset{w,w^TS_ww = 1}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}}
+		  \underset{w}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}} =\underset{w,w^T\mathbf{S_w}w = 1}{max}\frac{\mathbf{{S_b}'}}{\mathbf{{S_w}'}}
 	      \end{equation}
-
+\newpage
+	\item
+		透過拉格朗日乘子，並求導 \(\mathbf{S_w^{-1}S_B}\)的特徵向量，即為 \(\mathbf{w}\) 。
+	      \begin{gather}
+		      \label{eqn:LdaLagrange}
+			  L(\mathbf{w},\lambda) = \mathbf{w^TS_bw}-\lambda(\mathbf{w^TS_ww}-1)
+\\
+		      \label{eqn:LdaLagrange}
+			  \frac{\partial L(\mathbf{w},\lambda)}{\partial\mathbf{w}}=2\mathbf{S_bw}-2\lambda\mathbf{S_ww} \Rightarrow \mathbf{S_w^{-1}S_Bw} =\lambda\mathbf{w}
+	      \end{gather}
+		
 
 	      %
 	\item
@@ -125,4 +163,4 @@
 
 \section {結論}
 
-從以上的實例中可以發現，因為LDA屬於監督式學習法，可以根據本生的類別，進行有效的降維，也因此相比之下，雖然運算時間較長，但能有比PCA有更好的效果。除此之外，也能發現經過LDA的分析後，我們僅需要一個維度就可以順利的將三個類別分離，可見LDA在進行降維處理，有著顯著的效果。
+從以上的實例中可以發現，因為LDA屬於監督式學習法，可以根據本生的類別，進行有效的降維，因此相比之下，雖然運算時間較長，但能有比PCA有更好的效果。除此之外，也能發現經過LDA的分析後，我們僅需要一個維度就可以順利的將三個類別分離，可見LDA在進行降維處理，有著顯著的效果。

@@ -41,8 +41,8 @@
 \setmainfont{Times New Roman}
 
 % 設定中文字體
-%\setCJKmainfont{標楷體} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
-\setCJKmainfont{cwTeXKai}
+\setCJKmainfont{TW-Kai} %設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+%\setCJKmainfont{cwTeXKai}
 \XeTeXlinebreaklocale "zh"
 \XeTeXlinebreakskip = 0pt plus 1pt %這兩行一定要加，中文才能自動換行
 
@@ -87,7 +87,16 @@ mu$}\hfill
 %
 \parindent=0.85cm
 
-
+\lstset{
+    %backgroundcolor=\color{red!50!green!50!blue!50},%程式碼塊背景色為淺灰色
+    rulesepcolor= \color{gray}, %程式碼塊邊框顏色
+    breaklines=true,  %程式碼過長則換行
+    numbers=left, %行號在左側顯示
+    numberstyle= \small,%行號字型
+    %keywordstyle= \color{red},%關鍵字顏色
+    commentstyle=\color{gray}, %註釋顏色
+    frame=shadowbox%用方框框住程式碼塊
+    }
 
 
 
